@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>New Hire Form</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  
+  <!-- Bootstrap 3 Datepicker CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/css/bootstrap-datepicker.min.css">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+  
+  <!-- Bootstrap 5 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  
+  <!-- Bootstrap 3 Datepicker JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/js/bootstrap-datepicker.min.js"></script>
+  
+
+</head>
+<body>
+  <div class="container d-flex align-items-center justify-content-center">
+    <div class="d-flex justify-content-center">
+      <form>
+        <h1>New Hire Form</h1>
+        <div class="inlining_components">
+        <label>Select Starting Date:</label>
+        <div class="input-group date" id="datepicker" data-date-format="mm-dd-yyyy">
+          <input type="text" class="form-control" readonly />
+          <span class="input-group-addon">
+            <i class="glyphicon glyphicon-calendar"></i>
+          </span>
+        </div>
+      </div>
+    
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input type="password" class="form-control" id="exampleInputPassword1">
+        </div>
+        <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    $(function () {
+      // Function to check if a date is a weekend
+      function isWeekend(date) {
+        var day = date.getDay();
+        return day === 0 || day === 6; // Sunday or Saturday
+      }
+  
+      // Function to add business days to a date
+      function addBusinessDays(startDate, daysToAdd) {
+        var currentDate = new Date(startDate);
+        var addedDays = 0;
+  
+        while (addedDays < daysToAdd) {
+          currentDate.setDate(currentDate.getDate() + 1);
+          if (!isWeekend(currentDate)) {
+            addedDays++;
+          }
+        }
+        return currentDate;
+      }
+  
+      // Function to format date as mm-dd-yyyy
+      function formatDate(date) {
+        var month = date.getMonth() + 1; // Months are zero-based
+        var day = date.getDate();
+        var year = date.getFullYear();
+        return (month < 10 ? '0' : '') + month + '-' + (day < 10 ? '0' : '') + day + '-' + year;
+      }
+  
+      // Get today's date
+      var today = new Date();
+  
+      // Calculate the next 5 business days
+      var disabledDates = [];
+      for (var i = 1; i <= 5; i++) {
+        var nextBusinessDay = addBusinessDays(today, i);
+        disabledDates.push(formatDate(nextBusinessDay));
+      }
+  
+      // Initialize the datepicker
+      $('#datepicker').datepicker({
+        autoclose: true,
+        todayHighlight: true,
+        format: 'mm-dd-yyyy',
+        startDate: today, // Disable past dates
+        daysOfWeekDisabled: '0,6', // Disable weekends (0 = Sunday, 6 = Saturday)
+        beforeShowDay: function(date) {
+          var formattedDate = formatDate(date);
+          return {
+            enabled: $.inArray(formattedDate, disabledDates) === -1
+          };
+        }
+      }).datepicker('update', today);
+    });
+  </script>
+    
+</body>
+</html>
