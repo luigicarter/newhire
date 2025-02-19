@@ -28,11 +28,24 @@
 <body>
   <div class="container d-flex align-items-center justify-content-center">
     <div class="d-flex justify-content-center">
+      
+    <br>
       <form>
-            <h1>New Hire Form</h1>
+        
+        <h1>New Hire Form</h1>
+        <br>
             <div class="inlining_components">
+              
             <label>Select Starting Date:</label>
-            <div class="input-group date" id="datepicker" data-date-format="mm-dd-yyyy">
+            <div class="input-group date" id="start_date" data-date-format="mm-dd-yyyy">
+              <input type="text" class="form-control" readonly />
+              <span class="input-group-addon">
+                <i class="glyphicon glyphicon-calendar"></i>
+              </span>
+            </div>
+            <br>
+            <label>Select End Date:</label>
+            <div class="input-group date" id="end_date" data-date-format="mm-dd-yyyy">
               <input type="text" class="form-control" readonly />
               <span class="input-group-addon">
                 <i class="glyphicon glyphicon-calendar"></i>
@@ -52,18 +65,24 @@
                 <tr>
                   <th scope="row"></th>
                   <td>First name</td>
-                  <td><input type="text"></td>
+                  <td>
+                    <div class="input-group mb-3">
+                    <input type="text" class="form-control" >
+                  </div>
+                </td>
                 </tr>
                 <tr>
                   <th scope="row"></th>
                   <td>Last name</td>
-                  <td><input type="text"></td>
+                  <td>
+                    <div class="input-group mb-3">
+                      <input type="text" class="form-control" >
+                    </div>
+                  </td>
                 </tr>
               </tbody>
             </table>
-
-        
-      
+      </form>
       </div>
     
   </div>
@@ -109,7 +128,7 @@
       }
   
       // Initialize the datepicker
-      $('#datepicker').datepicker({
+      $('#start_date').datepicker({
         autoclose: true,
         todayHighlight: true,
         format: 'mm-dd-yyyy',
@@ -124,6 +143,63 @@
       }).datepicker('update', today);
     });
   </script>
+
+<script>
+  $(function () {
+    // Function to check if a date is a weekend
+    function isWeekend(date) {
+      var day = date.getDay();
+      return day === 0 || day === 6; // Sunday or Saturday
+    }
+
+    // Function to add business days to a date
+    function addBusinessDays(startDate, daysToAdd) {
+      var currentDate = new Date(startDate);
+      var addedDays = 0;
+
+      while (addedDays < daysToAdd) {
+        currentDate.setDate(currentDate.getDate() + 1);
+        if (!isWeekend(currentDate)) {
+          addedDays++;
+        }
+      }
+      return currentDate;
+    }
+
+    // Function to format date as mm-dd-yyyy
+    function formatDate(date) {
+      var month = date.getMonth() + 1; // Months are zero-based
+      var day = date.getDate();
+      var year = date.getFullYear();
+      return (month < 10 ? '0' : '') + month + '-' + (day < 10 ? '0' : '') + day + '-' + year;
+    }
+
+    // Get today's date
+    var today = new Date();
+
+    // Calculate the next 5 business days
+    var disabledDates = [];
+    for (var i = 1; i <= 5; i++) {
+      var nextBusinessDay = addBusinessDays(today, i);
+      disabledDates.push(formatDate(nextBusinessDay));
+    }
+
+    // Initialize the datepicker
+    $('#end_date').datepicker({
+      autoclose: true,
+      todayHighlight: true,
+      format: 'mm-dd-yyyy',
+      startDate: today, // Disable past dates
+      daysOfWeekDisabled: '0,6', // Disable weekends (0 = Sunday, 6 = Saturday)
+      beforeShowDay: function(date) {
+        var formattedDate = formatDate(date);
+        return {
+          enabled: $.inArray(formattedDate, disabledDates) === -1
+        };
+      }
+    }).datepicker('update');
+  });
+</script>
     
 </body>
 </html>
