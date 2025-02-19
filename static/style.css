@@ -3,3 +3,12 @@
 }
 
 
+.warnings{
+    color: red;
+    font-weight: bold;
+}
+
+
+.wrap-class{
+    word-wrap: break-word;
+}

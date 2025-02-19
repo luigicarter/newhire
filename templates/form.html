@@ -47,8 +47,11 @@
               <input type="text" class="form-control" readonly />
               <span class="input-group-addon">
                 <i class="glyphicon glyphicon-calendar"></i>
+                
               </span>
+              <br>
             </div>
+            <p class="warnings"> (Date can only be set 5 business days ahead )</p>
             <br>
             <label>Date de fin / End Date:</label>
             <div class="input-group date" id="end_date" data-date-format="mm-dd-yyyy">
@@ -59,7 +62,7 @@
             </div>
             </div>
             </b>
-            <table class="table table-borderless">
+            <table class="table table-borderless newhire">
               <thead>
                 <tr>
                   <th></th>
@@ -104,11 +107,37 @@
                     </div>
                   </td>
                 </tr>
+                <tr>
+                  <th scope="row"></th>
+                  <td> Address de livraison / Shipping address <br> 
+                  <p style="max-width:250px;" class="warnings wrap-class" > La livraison dans la region de la capital nationale necessite l'approbation
+                  de directeur. / Delivery in NAtional Capital Region requires director approval</p></td>
+                  <td>
+                    <div class="input-group mb-3">
+                      <input type="text" class="form-control" >
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row"></th>
+                  <td> Statut d'emploi / Employment Status</td>
+                  <td>
+                    <select class="form-select" aria-label="Default select example">
+                          <option selected>Selectionner / Choose</option>
+                          <option value="1">Determine / Term</option>
+                          <option value="2">Occasionel / Casual</option>
+                          <option value="3"> Detachement Interne / Secondment in  / Student</option>
+                          <option value="3"> Mutation / Transfer</option>
+                          <option value="3"> Consutlant</option>
+                          <option value="3"> Personel d'agence / Agency Personel</option>
+          
+                        </select>
+                  </td>
+                </tr>
               </tbody>
             </table>
       </form>
       </div>
-    
   </div>
 
   <script>
@@ -156,7 +185,7 @@
         autoclose: true,
         todayHighlight: true,
         format: 'mm-dd-yyyy',
-        startDate: today, // Disable past dates
+        startDate: formatDate(nextBusinessDay), // Disable past dates
         daysOfWeekDisabled: '0,6', // Disable weekends (0 = Sunday, 6 = Saturday)
         beforeShowDay: function(date) {
           var formattedDate = formatDate(date);
