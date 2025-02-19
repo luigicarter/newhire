@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/css/bootstrap-datepicker.min.css">
   
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style.css') }}">
   
   <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
@@ -26,17 +26,23 @@
 
 </head>
 <body>
+    <div class="container d-flex align-items-center justify-content-center">
+      <div class="d-flex justify-content-center">
+          <h3> <img src="/static/images/ec.png" id="ec_logo"> FORMULAIRE DE NOUVEAU PERSONNEL / NEW PERSONNEL FORM </h3>
+      </div>
+    </div>
+
   <div class="container d-flex align-items-center justify-content-center">
     <div class="d-flex justify-content-center">
       
     <br>
       <form>
         
-        <h1>New Hire Form</h1>
+        
         <br>
             <div class="inlining_components">
               
-            <label>Select Starting Date:</label>
+            <label> Date de Debut / Start Date:</label>
             <div class="input-group date" id="start_date" data-date-format="mm-dd-yyyy">
               <input type="text" class="form-control" readonly />
               <span class="input-group-addon">
@@ -44,7 +50,7 @@
               </span>
             </div>
             <br>
-            <label>Select End Date:</label>
+            <label>Date de fin / End Date:</label>
             <div class="input-group date" id="end_date" data-date-format="mm-dd-yyyy">
               <input type="text" class="form-control" readonly />
               <span class="input-group-addon">
@@ -64,7 +70,7 @@
               <tbody>
                 <tr>
                   <th scope="row"></th>
-                  <td>First name</td>
+                  <td>Prenom / First name</td>
                   <td>
                     <div class="input-group mb-3">
                     <input type="text" class="form-control" >
@@ -73,10 +79,28 @@
                 </tr>
                 <tr>
                   <th scope="row"></th>
-                  <td>Last name</td>
+                  <td>Nom de famille / Last name</td>
                   <td>
                     <div class="input-group mb-3">
                       <input type="text" class="form-control" >
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row"></th>
+                  <td > telephone de contact / Contact phone number </td>
+                  <td>
+                    <div class="input-group mb-3">
+                      <input type="tel"class="form-control" >
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row"></th>
+                  <td> Courriel de contact / Contact email address </td>
+                  <td>
+                    <div class="input-group mb-3">
+                      <input type="email" class="form-control" >
                     </div>
                   </td>
                 </tr>
