@@ -1,14 +1,21 @@
-#ec_logo{
-    width: 150px;
+#ec_logo {
+  width: 150px;
 }
 
-
-.warnings{
-    color: red;
-    font-weight: bold;
+.warnings {
+  color: red;
+  font-weight: bold;
 }
 
+.wrap-class {
+  word-wrap: break-word;
+}
 
-.wrap-class{
-    word-wrap: break-word;
+.tight-margin {
+  height: 70px;
+}
+
+.word-wrapper {
+  display: flex;
+  flex-wrap: wrap;
 }
