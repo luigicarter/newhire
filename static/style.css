@@ -9,6 +9,7 @@
 
 .wrap-class {
   word-wrap: break-word;
+  max-width: 270px;
 }
 
 .tight-margin {
@@ -18,4 +19,12 @@
 .word-wrapper {
   display: flex;
   flex-wrap: wrap;
+}
+
+.para-word-wrapper {
+  max-width: 300px;
+  word-wrap: break-word;
+  margin-bottom: 0px;
+  max-height: 100px;
+
 }
