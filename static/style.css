@@ -5,6 +5,7 @@
 .warnings {
   color: red;
   font-weight: bold;
+  font-size: 13px;
 }
 
 .wrap-class {
@@ -26,5 +27,10 @@
   word-wrap: break-word;
   margin-bottom: 0px;
   max-height: 100px;
+}
 
+.table-title {
+  max-width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
 }

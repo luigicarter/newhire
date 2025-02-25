@@ -41,7 +41,9 @@ var today = new Date();
 
 // Calculate the next 5 business days and store them in `disabledDates`
 var disabledDates = [];
-for (var i = 1; i <= 5; i++) {
+// business days to disable
+for (var i = 1; i <= 4; i++) {
+  ///
   var nextBusinessDay = addBusinessDays(today, i);
   disabledDates.push(formatDate(nextBusinessDay));
 }
