@@ -55,8 +55,7 @@
             <div class="input-group date" id="start_date" data-date-format="mm-dd-yyyy">
               <input type="text" id="start-date"  class="form-control" readonly />
               <span class="input-group-addon">
-                <i class="glyphicon glyphicon-calendar"></i>
-                
+                <i class="glyphicon glyphicon-calendar" id="start-date-cal"></i>
               </span>
               <br>
             </div>
@@ -132,13 +131,13 @@
                   <td>
                     <select class="form-select" aria-label="Default select example" id="employ-status">
                           <option selected>Selectionner / Choose</option>
-                          <option value="1">Determine / Term</option>
-                          <option value="2">Occasionel / Casual</option>
-                          <option value="3"> Detachement Interne / Secondment in </option>
-                          <option value="3"> Etudiant / Student </option>
-                          <option value="3"> Mutation / Transfer</option>
-                          <option value="3"> Consutlant</option>
-                          <option value="3"> Personel d'agence / Agency Personel</option>
+                          <option value="Determine / Term">Determine / Term</option>
+                          <option value="Occasionel / Casual">Occasionel / Casual</option>
+                          <option value="Detachement Interne / Secondment in"> Detachement Interne / Secondment in </option>
+                          <option value="Etudiant / Student "> Etudiant / Student </option>
+                          <option value="Mutation / Transfer"> Mutation / Transfer</option>
+                          <option value="Consutlant"> Consutlant</option>
+                          <option value="Personel d'agence / Agency Personel"> Personel d'agence / Agency Personel</option>
                         </select>
                   </td>
                 </tr>
@@ -146,10 +145,10 @@
                   <th scope="row"></th>
                   <td> Type d'emploi / Employment Type </td>
                   <td>
-                      <input type="checkbox" id="core-personel" name="vehicle3" value="Boat" >
+                      <input type="checkbox" id="core-personel" name="vehicle3" value="Core" >
                       <label> Personnel de base / Core Personnel</label>
                       <br>
-                      <input type="checkbox" id="ESS-personel" name="vehicle3" value="Boat">
+                      <input type="checkbox" id="ESS-personel" name="vehicle3" value="ESS">
                       <label>  Personnel de soutien aux événements / Event Support Personnel </label>
                   </td>
                 </tr>
@@ -162,12 +161,12 @@
                         Required for MyKey creation or transfer</p>
                     </td>
                   <td>
-                    <input type="checkbox" id="from-public-service" name="vehicle3" value="Boat">
+                    <input type="checkbox" id="from-public-service" name="vehicle3" value="User from public service">
                     <label>  Oui / Yes</label>
                     <br>
                   
                     
-                    <input type="checkbox" id="not-from-public-service" name="vehicle3" value="Boat">
+                    <input type="checkbox" id="not-from-public-service" name="vehicle3" value="User is not form public form">
                     <label>  Non / No </label>
                     <div id="department-named">
                     </div>
@@ -180,13 +179,12 @@
                     de gestionnaire ou de cadre ? / Is this a supervisor, manager or executive position? 
                   </td>
                   <td>
-                    <input type="checkbox" id="IsSupervisor" name="vehicle3" value="Boat">
+                    <input type="checkbox" id="IsSupervisor" name="vehicle3" value="Is a supervior">
                     <label>  Oui / Yes</label>
                     <br>
                    
-                    <input type="checkbox" id="NotSupervisor" name="vehicle3" value="Boat">
+                    <input type="checkbox" id="NotSupervisor" name="vehicle3" value="Is not a supervior">
                     <label>  Non / No </label>
-                     
                   </td>
                 </tr>
                 <tr>
@@ -196,11 +194,11 @@
                     / Will new employee be subject to performance pay?
                   </td>
                   <td>
-                    <input type="checkbox" id="performance-pay-yes" name="vehicle3" value="Boat">
+                    <input type="checkbox" id="performance-pay-yes" name="vehicle3" value="Employee will receive performance pay">
                     <label>  Oui / Yes</label>
                     <br>
                     
-                    <input type="checkbox" id="performance-pay-no" name="vehicle3" value="Boat">
+                    <input type="checkbox" id="performance-pay-no" name="vehicle3" value="Employee not will receive performance pay">
                     <label>  Non / No </label>
                   </td>
                 </tr>
@@ -211,7 +209,6 @@
                   </td>
                   <td>
                     <select class="form-select" aria-label="Default select example" id="Building-location">
-                      <option selected>Selectionner / Choose</option>
                       <option value="1"> 30 rue Victoria</option>
                       <option value="2">22 rue Eddy</option>
                       <option value="2">440 Coventry Rd</option>
@@ -229,11 +226,11 @@
                         </p>
                       </td>
                     <td>
-                      <input type="checkbox" id="telework" name="vehicle3" value="Boat">
+                      <input type="checkbox" id="telework" name="vehicle3" value="telework">
                       <label> Télétravail / Telework</label>
                       <br>
                          
-                      <input type="checkbox" id="onsite" name="vehicle3" value="Boat">
+                      <input type="checkbox" id="onsite" name="vehicle3" value="">
                       <label>  Sur place / Onsite </label>
                     </td>
                   </tr>
@@ -344,9 +341,9 @@
                           <select class="form-select" id="isEmployee" 
                            aria-label="Default select example">
                             <option selected>Si oui, est-ce que l'employé / If yes, is employee:</option>
-                            <option value="1">Gestionnaire ou supérieur / Manager or above</option>
-                            <option value="2">Chef d'équipe / Team Lead</option>
-                            <option value="2">Autre / Other</option>
+                            <option value="Gestionnaire ou supérieur / Manager or above">Gestionnaire ou supérieur / Manager or above</option>
+                            <option value="Chef d'équipe / Team Lead">Chef d'équipe / Team Lead</option>
+                            <option value="Autre / Other">Autre / Other</option>
                           </select>
                           
                       </td>
@@ -418,10 +415,10 @@
                                   <textarea class="form-control" placeholder="Leave a comment here" 
                                   id="other-requirements" style="height: 100px"></textarea>
                                   <label for="floatingTextarea2"></label>
-                                </div>
-                              </td>
-                            </tr>
-              </tbody>
+                            </div>
+                          </td>
+                      </tr>
+                </tbody>
             </table>
       </form>
       </div>
