@@ -1,10 +1,13 @@
+const startDate = document.getElementById('start-date');
+const endDate = document.getElementById('end-date');
+
 const coreEmployeeElement = document.getElementById('core-personel');
 const employee = document.getElementById('employ-status');
-const start_date = document.getElementById('start-date');
+
 /// add all fields except for check box fields and dropdown
 
-/// write functions to assign values to the check box fields and dynamically grey them out when 
-// one is selected. 
+/// write functions to assign values to the check box fields and dynamically grey them out when
+// one is selected.
 
 const form_fields = {
   startDate: undefined,
@@ -44,4 +47,3 @@ function coreEm() {
     console.log(coreEmployeeElement.value);
   }
 }
-
