@@ -45,5 +45,50 @@ const isManagerOrSupervisor = document.getElementById('isManagement-cell');
 const yesGCDOCS = document.getElementById('YesGCdocs');
 const noGCDOCS = document.getElementById('NoGCDOCS');
 
-////////////// write functions to assign values to the check box fields and dynamically grey them out when
-//////////one is selected.
+//// Tracking variables
+let employeeCoreCheckCount = 0;
+let employeeESSCheckCount = 0;
+let employeePersonnelType = undefined;
+
+/// todo a function to assign values to the check box fields and dynamically grey them out when one is selected.
+
+function checkBoxesHandler(event) {
+  const value = event.target.value;
+  console.log(`value of the clicked check box is : ${value}`);
+
+  /// handles if user clicks on core employyee box
+  if (value === 'Core') {
+    if (employeeCoreCheckCount === 0) {
+      employeePersonnelType = value;
+      employeeCoreCheckCount++;
+      console.log(employeeCoreCheckCount);
+      console.log(employeePersonnelType);
+      employeeESSPersonel.disabled = true;
+      //// handles if user unclicks core employee check box
+    } else if (employeeCoreCheckCount > 0) {
+      employeePersonnelType = undefined;
+      employeeCoreCheckCount--;
+      console.log(employeePersonnelType);
+      console.log(employeeCoreCheckCount);
+      employeeESSPersonel.disabled = false;
+    }
+    /////handles if user clicks on ESS check box
+  } else if (value === 'ESS') {
+    if (employeeESSCheckCount === 0) {
+      employeePersonnelType = value;
+      employeeESSCheckCount++;
+      employeeCorePersonel.disabled = true;
+      console.log(employeePersonnelType);
+      /// handles if the user unclicks in ESS check box
+    } else if (employeeESSCheckCount > 0) {
+      employeePersonnelType = undefined;
+      employeeESSCheckCount--;
+      console.log(employeePersonnelType);
+      employeeCorePersonel.disabled = false;
+    }
+  }
+}
+
+/// event handlers for check boxes
+employeeCorePersonel.addEventListener('click', checkBoxesHandler);
+employeeESSPersonel.addEventListener('click', checkBoxesHandler);
