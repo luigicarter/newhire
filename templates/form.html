@@ -51,8 +51,8 @@
             <div class="inlining_components">
 
             <label> Date de Debut / Start Date:</label>
-            <div class="input-group date" id="start_date" data-date-format="mm-dd-yyyy">
-              <input type="text" class="form-control" readonly />
+            <div class="input-group date" data-date-format="mm-dd-yyyy">
+              <input type="text" id="start_date"  class="form-control" readonly />
               <span class="input-group-addon">
                 <i class="glyphicon glyphicon-calendar"></i>
                 
@@ -62,8 +62,8 @@
             <p class="warnings"> (Date can only be set 5 business days ahead )</p>
             <br>
             <label>Date de fin / End Date:</label>
-            <div class="input-group date" id="end_date" data-date-format="mm-dd-yyyy">
-              <input type="text" class="form-control" readonly />
+            <div class="input-group date" data-date-format="mm-dd-yyyy">
+              <input type="text" id="end_date" class="form-control" readonly />
               <span class="input-group-addon">
                 <i class="glyphicon glyphicon-calendar"></i>
               </span>
@@ -85,7 +85,7 @@
                   <td>Prenom / First name</td>
                   <td>
                     <div class="input-group mb-3">
-                    <input type="text" class="form-control" >
+                    <input  id="first-name" type="text" class="form-control" >
                   </div>
                 </td>
                 </tr>
@@ -94,7 +94,7 @@
                   <td>Nom de famille / Last name</td>
                   <td>
                     <div class="input-group mb-3">
-                      <input type="text" class="form-control" >
+                      <input id="last-name" type="text" class="form-control" >
                     </div>
                   </td>
                 </tr>
@@ -103,7 +103,7 @@
                   <td > telephone de contact / Contact phone number </td>
                   <td>
                     <div class="input-group mb-3">
-                      <input type="tel"class="form-control" >
+                      <input  id="phone" type="tel"class="form-control" >
                     </div>
                   </td>
                 </tr>
@@ -112,7 +112,7 @@
                   <td> Courriel de contact / Contact email address </td>
                   <td>
                     <div class="input-group mb-3">
-                      <input type="email" class="form-control" >
+                      <input id="email" type="email" class="form-control" >
                     </div>
                   </td>
                 </tr>
@@ -171,6 +171,11 @@
                     <input type="checkbox" id="not-from-public-service" name="vehicle3" value="User is not form public form">
                     <label>  Non / No </label>
                     <div id="department-named">
+                    </div>
+                    <div id="other-department">
+                      <div class="input-group mb-3">
+                        <input type="text" class="form-control" >
+                      </div>
                     </div>
                   </td>
                 </tr>
@@ -320,6 +325,13 @@
                         <label> Exigences particulières de matériel / Other Hardware Requirements:</label>
                         <div id="other-equipment-textbox">
                         </div>
+                        <div id="other-equipment-textbox">
+                          <div class="form-floating">
+                            <textarea class="form-control" placeholder="Leave a comment here" 
+                            id="access-to-shared-mailboxes" style="height: 100px"></textarea>
+                            <label for="floatingTextarea2"></label>
+                          </div>
+                        </div>
                       </td>
                   </tr>
                   <tr>
@@ -340,7 +352,7 @@
                           <label> Non / No</label>
                         
                           <br>
-                          <select class="form-select" id="isEmployee" 
+                          <select class="form-select" id="isManagement-cell" 
                            aria-label="Default select example">
                             <option selected>Si oui, est-ce que l'employé / If yes, is employee:</option>
                             <option value="Gestionnaire ou supérieur / Manager or above">Gestionnaire ou supérieur / Manager or above</option>
@@ -426,6 +438,6 @@
       </div>
   </div>
 
-    
+  <script src="{{url_for('static', filename='scripts.js')}}"></script>
 </body>
 </html>

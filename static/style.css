@@ -34,3 +34,11 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+#other-equipment-textbox {
+  display: none;
+}
+
+#other-department {
+  display: none;
+}
