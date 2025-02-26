@@ -133,14 +133,13 @@
                   <td>
                     <select class="form-select" aria-label="Default select example">
                           <option selected>Selectionner / Choose</option>
-                          <option value="1">Determine / Term</option>
-                          <option value="2">Occasionel / Casual</option>
-                          <option value="3"> Detachement Interne / Secondment in </option>
-                          <option value="3"> Etudiant / Student </option>
-                          <option value="3"> Mutation / Transfer</option>
-                          <option value="3"> Consutlant</option>
-                          <option value="3"> Personel d'agence / Agency Personel</option>
-          
+                          <option value="Determine / Term">Determine / Term</option>
+                          <option value="Occasionel / Casual">Occasionel / Casual</option>
+                          <option value="Detachement Interne / Secondment in"> Detachement Interne / Secondment in </option>
+                          <option value="Etudiant / Student "> Etudiant / Student </option>
+                          <option value="Mutation / Transfer"> Mutation / Transfer</option>
+                          <option value="Consutlant"> Consutlant</option>
+                          <option value="Personel d'agence / Agency Personel"> Personel d'agence / Agency Personel</option>
                         </select>
                   </td>
                 </tr>
@@ -148,10 +147,10 @@
                   <th scope="row"></th>
                   <td> Type d'emploi / Employment Type </td>
                   <td>
-                      <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+                      <input type="checkbox" id="core-personel" name="vehicle3" value="Core" >
                       <label> Personnel de base / Core Personnel</label>
                       <br>
-                      <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+                      <input type="checkbox" id="ESS-personel" name="vehicle3" value="ESS">
                       <label>  Personnel de soutien aux événements / Event Support Personnel </label>
                   </td>
                 </tr>
@@ -164,12 +163,12 @@
                         Required for MyKey creation or transfer</p>
                     </td>
                   <td>
-                    <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+                    <input type="checkbox" id="from-public-service" name="vehicle3" value="User from public service">
                     <label>  Oui / Yes</label>
                     <br>
                     <!--<p> ou / or</p> --->
                     
-                    <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+                    <input type="checkbox" id="not-from-public-service" name="vehicle3" value="User is not form public form">
                     <label>  Non / No </label>
                     <div id="department-named">
                     </div>
@@ -182,11 +181,11 @@
                     de gestionnaire ou de cadre ? / Is this a supervisor, manager or executive position? 
                   </td>
                   <td>
-                    <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+                    <input type="checkbox" id="IsSupervisor" name="vehicle3" value="Is a supervior">
                     <label>  Oui / Yes</label>
                     <br>
-                   <!--<p> ou / or</p> --->
-                    <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+                   
+                    <input type="checkbox" id="NotSupervisor" name="vehicle3" value="Is not a supervior">
                     <label>  Non / No </label>
                      
                   </td>
@@ -198,11 +197,11 @@
                     / Will new employee be subject to performance pay?
                   </td>
                   <td>
-                    <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+                    <input type="checkbox" id="performance-pay-yes" name="vehicle3" value="Employee will receive performance pay">
                     <label>  Oui / Yes</label>
                     <br>
-                    <!--<p> ou / or</p> --->
-                    <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+                    
+                    <input type="checkbox" id="performance-pay-no" name="vehicle3" value="Employee not will receive performance pay">
                     <label>  Non / No </label>
                   </td>
                 </tr>
@@ -212,22 +211,12 @@
                     Bâtiment / Building 
                   </td>
                   <td>
-                    <div id="30-victoria" class="addres-checkbox">
-                    <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
-                    <label>  30 victoria</label>
-                  </div>
-                  <div id="44-Coventry">
-                    <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
-                    <label>44 Coventry</label>
-                  </div>
-                  <div id="22-rue-Eddy">
-                    <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
-                    <label>22 rue Eddy</label>
-                  </div>
-                  <div id="statcan">
-                    <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
-                    <label>Statistiques Canada / Statistics Canada</label>
-                  </div>
+                    <select class="form-select" aria-label="Default select example" id="Building-location">
+                      <option value="1"> 30 rue Victoria</option>
+                      <option value="2">22 rue Eddy</option>
+                      <option value="2">440 Coventry Rd</option>
+                      <option value="2">Statistiques Canada / Statistics Canada</option>
+                    </select>
                   </td>
                   <tr>
                     <th scope="row"></th>
@@ -239,15 +228,199 @@
                         </p>
                       </td>
                     <td>
-                      <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+                      <input type="checkbox" id="telework" name="vehicle3" value="telework">
                       <label> Télétravail / Telework</label>
                       <br>
-                      <!--<p> ou / or</p> --->
-                      <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
-                      <label>  Sur place / Onsite </label>     
+                         
+                      <input type="checkbox" id="onsite" name="vehicle3" value="">
+                      <label>  Sur place / Onsite </label>
                     </td>
                   </tr>
-              </tbody>
+                  <tr>
+                    <th scope="row"></th>
+                    <td class="para-word-wrapper" >
+                      Titre du poste bilingue / Bilingual Position Title
+                      </td>
+                    <td>
+                      <div class="input-group mb-3">
+                        <input type="text" class="form-control" id="employee-title"  aria-label="Sizing example input" 
+                        aria-describedby="inputGroup-sizing-default">
+                      </div>                      
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row"></th>
+                    <td class="para-word-wrapper" >
+                      Secteur / Sector
+                      </td>
+                    <td>
+                      <div class="input-group mb-3">
+                        <input type="text" id="employee-sector"  class="form-control" aria-label="Sizing example input" 
+                        aria-describedby="inputGroup-sizing-default">
+                      </div>                      
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row"></th>
+                    <td class="para-word-wrapper" >
+                      Direction générale / Branch
+                      </td>
+                    <td>
+                      <div class="input-group mb-3">
+                        <input type="text" id="employee-branch" class="form-control" aria-label="Sizing example input" 
+                        aria-describedby="inputGroup-sizing-default">
+                      </div>                      
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row"></th>
+                    <td class="para-word-wrapper" >
+                      Direction / Directorate
+                      </td>
+                    <td>
+                      <div class="input-group mb-3">
+                        <input type="text" id="directorate" class="form-control" aria-label="Sizing example input"
+                         aria-describedby="inputGroup-sizing-default">
+                      </div>                      
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row"></th>
+                    <td class="para-word-wrapper" >
+                      Nom du superviseur / Supervisor Name
+                      </td>
+                    <td>
+                      <div class="input-group mb-3">
+                        <input type="text" id="supervisor-name" class="form-control" aria-label="Sizing example input" 
+                        aria-describedby="inputGroup-sizing-default">
+                      </div>                      
+                    </td>
+                  </tr>
+                  <tr>
+                  <th scope="row"></th>
+                    <td class="para-word-wrapper" >
+                      Accessoires informatiques / Computer Accessories
+                      <p class="warnings wrap-class ">Les employés à durée déterminée et indéterminée, les étudiants
+                         et les consultants reçoivent une tablette et jusqu'à deux moniteurs. Les occasionnels et 
+                         le personnel de soutien aux événements reçoivent un laptop ou un ordinateur tout-en-un et un moniteur. 
+                         / Term and Indeterminate employees, students and consultants receive a tablet and up to two monitors. 
+                        Casuals and Event Staff receive a laptop or All-In-One computer and one monitor.</p>
+                    </td>
+                    <td>
+                      <select class="form-select" aria-label="Default select example" id="number-of-monitors">
+                        <option selected>Nombre d'ecran/ Number of monitors</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                      </select>
+                        <br>
+                        <input type="checkbox" id="keyboard-mouse" name="vehicle3" value="Boat" >
+                        <label> Clavier et souris / Keyboard and Mouse</label>
+                        <br>
+                        <input type="checkbox" id="other-equipment-check" name="vehicle3" value="Boat">
+                        <label> Exigences particulières de matériel / Other Hardware Requirements:</label>
+                        <div id="other-equipment-textbox">
+                        </div>
+                      </td>
+                  </tr>
+                  <tr>
+                    <th scope="row"></th>
+                      <td class="para-word-wrapper" >
+                        Cellulaire / Cellphone
+                        <p class="warnings wrap-class ">Aucune approbation n'est requise pour les gestionnaires et supérieurs. 
+                          Les autres demandes doivent-être approuvées par le gestionnaire Télécom sans-fil.
+                          No approval is required for managers or above. 
+                          Other requests will be processed upon approval by the Telecom Wireless manager. 
+                          </p>
+                      </td>
+                      <td>
+                        <input type="checkbox" id="yes-cellphone" name="vehicle3" value="Boat">
+                          <label> Oui / Yes</label>
+                          <br>
+                          <input type="checkbox" id="no-cellphone" name="vehicle3" value="Boat">
+                          <label> Non / No</label>
+                        
+                          <br>
+                          <select class="form-select" id="isEmployee" 
+                           aria-label="Default select example">
+                            <option selected>Si oui, est-ce que l'employé / If yes, is employee:</option>
+                            <option value="Gestionnaire ou supérieur / Manager or above">Gestionnaire ou supérieur / Manager or above</option>
+                            <option value="Chef d'équipe / Team Lead">Chef d'équipe / Team Lead</option>
+                            <option value="Autre / Other">Autre / Other</option>
+                          </select>
+                          
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row"></th>
+                        <td class="para-word-wrapper" >
+                          Accès aux boîtes de réception et lecteurs partagés, adhésion à des listes de distribution.
+                          Access to shared mailboxes and drives, distribution list memberships. 
+
+                          <p class="warnings wrap-class ">Vous pouvez indiquer le nom d'un autre utilisateur avec des droits similaires.
+                            / You may indicate the name of another user with similar rights.
+                            </p>
+                        </td>
+                        <td>
+                          <div class="form-floating">
+                            <textarea class="form-control" placeholder="Leave a comment here" 
+                            id="access-to-shared-mailboxes" style="height: 100px"></textarea>
+                            <label for="floatingTextarea2"></label>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"></th>
+                          <td class="para-word-wrapper" >
+                            Logiciels spéciaux / Special Software  
+  
+                            <p class="warnings wrap-class ">Préciser les noms du logiciel. 
+                              Les réponses telles que « comme » une autre personne ne seront pas traitées.
+                              Specify names of software. Responses such as “same as” another person will not be processed.
+                              
+                              </p>
+                          </td>
+                          <td>
+                            <div class="form-floating">
+                              <textarea class="form-control" placeholder="Leave a comment here" 
+                              id="software-access" style="height: 100px"></textarea>
+                              <label for="floatingTextarea2"></label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row"></th>
+                            <td class="para-word-wrapper" >
+                              Accès aux GCdocs / GCdocs Access  
+    
+                              <p class="warnings wrap-class ">Indiquez le groupe d'autorisations GCdocs approprié ou
+                                 le nom d'un employé occupant un poste similaire.
+                                Provide the appropriate GCdocs permissions group or the name of an employee in a similar position.
+                                
+                          
+                                </p>
+                            </td>
+                            <td>
+                              <input type="checkbox" id="YesGCdocs" name="vehicle3" value="Boat">
+                              <label> Oui / Yes</label>
+                              <br>
+                              <input type="checkbox" id="NoGCdocs" name="vehicle3" value="Boat">
+                              <label> Non / No</label>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row"></th>
+                              <td class="para-word-wrapper" >
+                                Autres exigences / Other Requirements
+                              </td>
+                              <td>
+                                <div class="form-floating">
+                                  <textarea class="form-control" placeholder="Leave a comment here" 
+                                  id="other-requirements" style="height: 100px"></textarea>
+                                  <label for="floatingTextarea2"></label>
+                            </div>
+                          </td>
+                      </tr>
+                </tbody>
             </table>
       </form>
       </div>

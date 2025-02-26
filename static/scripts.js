@@ -2,6 +2,7 @@ const startDate = document.getElementById('start-date');
 const endDate = document.getElementById('end-date');
 
 const coreEmployeeElement = document.getElementById('core-personel');
+<<<<<<< HEAD
 const employee = document.getElementById('employ-status');
 
 /// add all fields except for check box fields and dropdown
@@ -39,6 +40,8 @@ const form_fields = {
   Gcdocs: undefined,
   other: undefined,
 };
+=======
+>>>>>>> parent of 799f872 (created form object)
 
 function coreEm() {
   if (coreEmployeeElement === null) {
@@ -47,3 +50,8 @@ function coreEm() {
     console.log(coreEmployeeElement.value);
   }
 }
+<<<<<<< HEAD
+=======
+
+coreEmployeeElement.addEventListener('click', coreEm);
+>>>>>>> parent of 799f872 (created form object)
