@@ -52,7 +52,8 @@ let employeeESSCheckCount = 0;
 let employeePersonnelType = undefined;
 /////////// check if employee is from public services
 let publicServiceCount = 0;
-let isEmployeeFromPublicService;
+let notFromPublicCount = 0;
+let isEmployeeFromPublicService = undefined;
 
 /// todo a function to assign values to the check box fields and dynamically grey them out when one is selected.
 
@@ -90,9 +91,25 @@ function checkBoxesHandler(event) {
       console.log(employeePersonnelType);
       employeeCorePersonel.disabled = false;
     }
+  }else if (value === "fromPublicService"){
+    if (publicServiceCount === 0){
+      isEmployeeFromPublicService = true;
+      publicServiceCount++;
+      notFromPublicService.disabled = true;
+      console.log(isEmployeeFromPublicService);      
+    } else if(publicServiceCount  < 0){
+      isEmployeeFromPublicService = undefined;
+      publicServiceCount--;
+      notFromPublicService.disabled = false;
+      console.log(isEmployeeFromPublicService);
+      
+    }
   }
 }
 
 /// event handlers for check boxes
+/////// core and ESS employee check boxes
 employeeCorePersonel.addEventListener('click', checkBoxesHandler);
 employeeESSPersonel.addEventListener('click', checkBoxesHandler);
+///// from public service and not from public service checkboxes
+FromPublicService.addEventListener('click', checkBoxesHandler);
