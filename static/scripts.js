@@ -46,9 +46,13 @@ const yesGCDOCS = document.getElementById('YesGCdocs');
 const noGCDOCS = document.getElementById('NoGCDOCS');
 
 //// Tracking variables
+////////// employee type checkboxes
 let employeeCoreCheckCount = 0;
 let employeeESSCheckCount = 0;
 let employeePersonnelType = undefined;
+/////////// check if employee is from public services
+let publicServiceCount = 0;
+let isEmployeeFromPublicService;
 
 /// todo a function to assign values to the check box fields and dynamically grey them out when one is selected.
 
