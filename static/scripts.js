@@ -26,10 +26,10 @@ const otherRequirments = document.getElementById('other-requirements');
 const employeeCorePersonel = document.getElementById('core-personel');
 const employeeESSPersonel = document.getElementById('ESS-personel');
 ////////// employee is from public check check boxes ?
-const FromPublicService = document.getElementById('from-public-service');
+const fromPublicService = document.getElementById('from-public-service');
 const notFromPublicService = document.getElementById('not-from-public-service');
 //////// is user the supervisor
-const isSupervisor = document.getElementById('isSupervisor');
+const isSupervisor = document.getElementById('IsSupervisor');
 const notSupervisor = document.getElementById('NotSupervisor');
 //////// performance pay check boxes
 const yesPerformancePay = document.getElementById('performance-pay-yes');
@@ -45,6 +45,9 @@ const isManagerOrSupervisor = document.getElementById('isManagement-cell');
 const yesGCDOCS = document.getElementById('YesGCdocs');
 const noGCDOCS = document.getElementById('NoGCDOCS');
 
+//// hidden fields
+const previousDepartment = document.getElementById('other-department');
+
 //// Tracking variables
 ////////// employee type checkboxes
 let employeeCoreCheckCount = 0;
@@ -54,6 +57,10 @@ let employeePersonnelType = undefined;
 let publicServiceCount = 0;
 let notFromPublicCount = 0;
 let isEmployeeFromPublicService = undefined;
+///
+let isASupervisorCount = 0;
+let isNotASupervisor = 0;
+let isASuperviorAnswer = undefined;
 
 /// todo a function to assign values to the check box fields and dynamically grey them out when one is selected.
 
@@ -77,8 +84,9 @@ function checkBoxesHandler(event) {
       console.log(employeeCoreCheckCount);
       employeeESSPersonel.disabled = false;
     }
-    /////handles if user clicks on ESS check box
-  } else if (value === 'ESS') {
+  }
+  /////handles if user clicks on ESS check box
+  else if (value === 'ESS') {
     if (employeeESSCheckCount === 0) {
       employeePersonnelType = value;
       employeeESSCheckCount++;
@@ -91,18 +99,49 @@ function checkBoxesHandler(event) {
       console.log(employeePersonnelType);
       employeeCorePersonel.disabled = false;
     }
-  }else if (value === "fromPublicService"){
-    if (publicServiceCount === 0){
+    /// handles if the user clicks on "oui" if if they come from public service
+  } else if (value === 'fromPublicService') {
+    if (publicServiceCount === 0) {
       isEmployeeFromPublicService = true;
       publicServiceCount++;
+
       notFromPublicService.disabled = true;
-      console.log(isEmployeeFromPublicService);      
-    } else if(publicServiceCount  < 0){
+      previousDepartment.style.display = 'flex';
+      console.log(isEmployeeFromPublicService);
+      /// handles if the user DOUBLE clicks on "oui" if if they come from public service
+    } else if (publicServiceCount > 0) {
       isEmployeeFromPublicService = undefined;
+      previousDepartment.style.display = 'none';
       publicServiceCount--;
+      console.log('public service count is ' + publicServiceCount);
       notFromPublicService.disabled = false;
       console.log(isEmployeeFromPublicService);
-      
+    }
+    /// handles if the user clicks on "Non" if if they come from public service
+  } else if (value === 'notFromPublicServer') {
+    if (notFromPublicCount === 0) {
+      isEmployeeFromPublicService = false;
+      notFromPublicCount++;
+      fromPublicService.disabled = true;
+      console.log(isEmployeeFromPublicService);
+      /// handles if the user DOUBLE clicks on "Non" if if they come from public service
+    } else if (notFromPublicCount > 0) {
+      isEmployeeFromPublicService = undefined;
+      notFromPublicCount--;
+      fromPublicService.disabled = false;
+      console.log(isEmployeeFromPublicService);
+    }
+  } else if (value === 'isASupervior') {
+    if (isASupervisorCount === 0) {
+      notSupervisor.disabled = true;
+      isASuperviorAnswer = true;
+      isASupervisorCount++;
+      console.log(isASuperviorAnswer);
+    } else if (isASupervisorCount > 0) {
+      notSupervisor.disabled = false;
+      isASupervisorCount--;
+      isASuperviorAnswer = undefined;
+      console.log(isASuperviorAnswer);
     }
   }
 }
@@ -112,4 +151,7 @@ function checkBoxesHandler(event) {
 employeeCorePersonel.addEventListener('click', checkBoxesHandler);
 employeeESSPersonel.addEventListener('click', checkBoxesHandler);
 ///// from public service and not from public service checkboxes
-FromPublicService.addEventListener('click', checkBoxesHandler);
+fromPublicService.addEventListener('click', checkBoxesHandler);
+notFromPublicService.addEventListener('click', checkBoxesHandler);
+/// is the user a supervisor or manager checkboxes
+isSupervisor.addEventListener('click', checkBoxesHandler);
