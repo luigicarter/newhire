@@ -1,3 +1,37 @@
+// Object to record
+
+const form_fields = {
+  startDate: undefined,
+  endDate: undefined,
+  firstName: undefined,
+  lastName: undefined,
+  phoneNumber: undefined,
+  email: undefined,
+  address: undefined,
+  employeeStatus: undefined,
+  typeOfEmployee: undefined,
+  fromPublicService: undefined,
+  ifUserFromPublic: false,
+  SupervisorOrManager: undefined,
+  performancePay: undefined,
+  buildingLocation: undefined,
+  teleworkOrOnsite: undefined,
+  employeeTitle: undefined,
+  employeeSector: undefined,
+  employeeBranch: undefined,
+  employeeDirectorate: undefined,
+  SupervisorName: undefined,
+  numberOfMonitors: undefined,
+  KeyboardAndMouse: undefined,
+  otherEquipment: undefined,
+  cellphone: undefined,
+  cellSupervisorOrManager: undefined,
+  mailboxAccess: undefined,
+  software: undefined,
+  Gcdocs: undefined,
+  other: undefined,
+};
+
 /// all static fields
 const startDate = document.getElementById('start-date');
 const endDate = document.getElementById('end-date');
@@ -23,25 +57,38 @@ const otherRequirments = document.getElementById('other-requirements');
 
 //check box fields
 //////////////// type of employee
+
 const employeeCorePersonel = document.getElementById('core-personel');
 const employeeESSPersonel = document.getElementById('ESS-personel');
+// done
 ////////// employee is from public check check boxes ?
+
 const fromPublicService = document.getElementById('from-public-service');
 const notFromPublicService = document.getElementById('not-from-public-service');
+// done
 //////// is user the supervisor
+
 const isSupervisor = document.getElementById('IsSupervisor');
 const notSupervisor = document.getElementById('NotSupervisor');
+// done
 //////// performance pay check boxes
+
 const yesPerformancePay = document.getElementById('performance-pay-yes');
 const noPerformancePay = document.getElementById('performance-pay-no');
+
 ////////// onsite work
+
 const telework = document.getElementById('telework');
 const onSite = document.getElementById('onsite');
+
 ///////// cell phone
+
 const yesCell = document.getElementById('yes-cellphone');
 const noCell = document.getElementById('no-cellphone');
 const isManagerOrSupervisor = document.getElementById('isManagement-cell');
+
 ////////// GCDOCS access
+
 const yesGCDOCS = document.getElementById('YesGCdocs');
 const noGCDOCS = document.getElementById('NoGCDOCS');
 
@@ -57,10 +104,14 @@ let employeePersonnelType = undefined;
 let publicServiceCount = 0;
 let notFromPublicCount = 0;
 let isEmployeeFromPublicService = undefined;
-///
+/// if user is a supervisor/manager checkboxes
 let isASupervisorCount = 0;
-let isNotASupervisor = 0;
+let isNotASupervisorCount = 0;
 let isASuperviorAnswer = undefined;
+/// performance pay tracking variables
+let yesPerformancePayCount = 0;
+let noPerformancePayCount = 0;
+let performancePayAnswer = undefined;
 
 /// todo a function to assign values to the check box fields and dynamically grey them out when one is selected.
 
@@ -145,10 +196,51 @@ function checkBoxesHandler(event) {
       isASuperviorAnswer = undefined;
       console.log(isASuperviorAnswer);
     }
+  } else if (value === 'Is not a supervior') {
+    if (isNotASupervisorCount === 0) {
+      isASuperviorAnswer = false;
+      isSupervisor.disabled = true;
+      isNotASupervisorCount++;
+      console.log(isASuperviorAnswer);
+    } else if (isNotASupervisorCount > 0) {
+      isASuperviorAnswer = undefined;
+      isSupervisor.disabled = false;
+      isNotASupervisorCount--;
+      console.log(isASuperviorAnswer);
+    }
+  } else if (value === 'Employee will receive performance pay') {
+    if (yesPerformancePayCount === 0) {
+      noPerformancePay.disabled = true;
+      yesPerformancePayCount++;
+      performancePayAnswer = true;
+      console.log(performancePayAnswer);
+    } else if (yesPerformancePayCount > 0) {
+      noPerformancePay.disabled = false;
+      yesPerformancePayCount--;
+      performancePayAnswer = undefined;
+      console.log(performancePayAnswer);
+    }
+  } else if (value === 'Employee not will receive performance pay') {
+    if (noPerformancePayCount === 0) {
+      yesPerformancePay.disabled = true;
+      noPerformancePayCount++;
+      performancePayAnswer = false;
+      console.log(performancePayAnswer);
+    } else if (noPerformancePayCount > 0) {
+      yesPerformancePay.disabled = false;
+      noPerformancePayCount--;
+      performancePayAnswer = undefined;
+      console.log(performancePayAnswer);
+    }
   }
 }
 
+// let yesPerformancePayCount = 0;
+// let noPerformancePayCount = 0;
+// let performancePayAnswer = undefined;
+
 /// event handlers for check boxes
+
 /////// core and ESS employee check boxes
 employeeCorePersonel.addEventListener('click', checkBoxesHandler);
 employeeESSPersonel.addEventListener('click', checkBoxesHandler);
@@ -157,3 +249,7 @@ fromPublicService.addEventListener('click', checkBoxesHandler);
 notFromPublicService.addEventListener('click', checkBoxesHandler);
 /// is the user a supervisor or manager checkboxes
 isSupervisor.addEventListener('click', checkBoxesHandler);
+notSupervisor.addEventListener('click', checkBoxesHandler);
+/// performance pay check boxes
+yesPerformancePay.addEventListener('click', checkBoxesHandler);
+noPerformancePay.addEventListener('click', checkBoxesHandler);

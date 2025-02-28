@@ -40,6 +40,7 @@ other requirements = other-requirements
 //   employeeStatus: undefined,
 //   typeOfEmployee: undefined,
 //   fromPublicService: undefined,
+     ifUserFromPublic: false,
 //   SupervisorOrManager: undefined,
 //   performancePay: undefined,
 //   buildingLocation: undefined,
