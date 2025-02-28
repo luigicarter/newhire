@@ -131,12 +131,14 @@ function checkBoxesHandler(event) {
       fromPublicService.disabled = false;
       console.log(isEmployeeFromPublicService);
     }
+    /// handles if the user clicks on "oui" for if the user is a supervisor/manager
   } else if (value === 'isASupervior') {
     if (isASupervisorCount === 0) {
       notSupervisor.disabled = true;
       isASuperviorAnswer = true;
       isASupervisorCount++;
       console.log(isASuperviorAnswer);
+      /// handles if the user DOUBLE clicks on "oui" for if the user is a supervisor/manager
     } else if (isASupervisorCount > 0) {
       notSupervisor.disabled = false;
       isASupervisorCount--;
