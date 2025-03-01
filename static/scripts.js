@@ -1,39 +1,5 @@
-// Object to record all fields
-const form_fields = {
-  startDate: undefined,
-  endDate: undefined,
-  firstName: undefined,
-  lastName: undefined,
-  phoneNumber: undefined,
-  email: undefined,
-  address: undefined,
-  employeeStatus: undefined, /// casual , term, indeterminate ....
-  typeOfEmployee: undefined, /// core or ESS
-  fromPublicService: undefined, // is user coming from anotehr department or have the worked in the past
-  otherDepartment: undefined, /// if they user is from another department, it would be listed here
-  SupervisorOrManager: undefined, // to check if user is a manager or supervisor
-  performancePay: undefined, // will user receive performance pay
-  buildingLocation: undefined, // which building location us the user going to work in
-  teleworkOrOnsite: undefined, /// is user teleworking or on site
-  employeeTitle: undefined, // self explinatory
-  employeeSector: undefined, // self explinatory
-  employeeBranch: undefined, /// self explinatory
-  employeeDirectorate: undefined, /// self explinatory
-  SupervisorName: undefined, // self explinatory
-  numberOfMonitors: undefined, // self explinatory
-  KeyboardAndMouse: undefined, // self explinatory
-  otherEquipmentBool: undefined, // self explinatory
-  otherEquipmentText: undefined, /// self explinatory
-  cellphone: undefined, // self explinatory
-  cellSupervisorOrManager: undefined,
-  mailboxAccess: undefined,
-  software: undefined,
-  Gcdocs: undefined,
-  other: undefined,
-};
-
 /// all static fields
-const startDate = document.getElementById('start-date');
+const startDate = document.getElementById('start_date');
 const endDate = document.getElementById('end-date');
 const firstName = document.getElementById('first-name');
 const lastName = document.getElementById('last-name');
@@ -48,11 +14,14 @@ const employeeBranch = document.getElementById('employee branch');
 const employeeDirectorate = document.getElementById('directorate');
 const SupervisorName = document.getElementById('supervisor-name');
 const numberOfMonitors = document.getElementById('number-of-monitors');
-const otherEquipmentText = document.getElementById('other-equipment-textbox');
+const otherEquipmentList = document.getElementById('other-equipment-list');
 const mailboxAccess = document.getElementById('access-to-shared-mailbox');
 const softwareAccess = document.getElementById('software-access');
 const otherRequirments = document.getElementById('other-requirements');
 const isManagerOrSupervisorCell = document.getElementById('isManagement-cell');
+
+/// variable to manipulate div
+const otherEquipmentText = document.getElementById('other-equipment-textbox'); ///  this is a div
 
 //check box fields
 //////////////// type of employee
@@ -97,6 +66,82 @@ const noGCDOCS = document.getElementById('NoGCdocs');
 
 //// hidden fields
 const previousDepartment = document.getElementById('other-department');
+
+// Object to record all fields
+//// each item returns the value of the field it's assigned to
+const form_fields = {
+  startDate: () => {
+    return startDate.value;
+  },
+  endDate: () => {
+    return endDate.value;
+  },
+  firstName: () => {
+    return firstName.value;
+  },
+  lastName: () => {
+    return lastName.value;
+  },
+  phoneNumber: () => {
+    return phoneNumber.value;
+  },
+  email: () => {
+    return email.value;
+  },
+  address: () => {
+    return address.value;
+  },
+  employeeStatus: () => {
+    return employeeStatus.value;
+  }, /// casual , term, indeterminate ....
+
+  typeOfEmployee: undefined, /// assigned form check box /// core or ESS
+  fromPublicService: undefined, //assigned from check box // is user coming from anotehr department or have the worked in the past
+  otherDepartment: () => {
+    if (fromPublicService.checked) {
+      return previousDepartment.value;
+    } else {
+      return undefined;
+    }
+  }, /// if the user is from another department, it would be listed here
+  SupervisorOrManager: undefined, // to check if user is a manager or supervisor
+  performancePay: undefined, // will user receive performance pay
+  buildingLocation: () => {
+    return buildingLocation.value;
+  }, // which building location us the user going to work in
+
+  teleworkOrOnsite: undefined, /// is user teleworking or on site
+  employeeTitle: () => {
+    return employeeTitle.value;
+  }, // self explinatory
+  employeeSector: () => {
+    return employeeSector.value;
+  }, // self explinatory
+  employeeBranch: () => {
+    return employeeBranch.value;
+  }, /// self explinatory
+  employeeDirectorate: () => {
+    return employeeDirectorate.value;
+  }, /// self explinatory
+  SupervisorName: () => {
+    return SupervisorName.value;
+  }, // self explinatory
+  numberOfMonitors: () => {
+    return numberOfMonitors.value;
+  }, // self explinatory
+  KeyboardAndMouse: undefined, // self explinatory
+  otherEquipmentText: () => {
+    if (otherEquipmentCheck.checked) {
+      return otherEquipmentList.value;
+    }
+  }, /// self explinatory
+  cellphone: undefined, // self explinatory
+  cellSupervisorOrManager: undefined,
+  mailboxAccess: undefined,
+  software: undefined,
+  Gcdocs: undefined,
+  other: undefined,
+};
 
 //// Tracking variables
 ////////// employee type checkboxes
@@ -368,11 +413,6 @@ function checkBoxesHandler(event) {
     }
   }
 }
-// yesCell
-// noCell
-// let yesCellCount = 0;
-// let noCellCount = 0;
-// let needCellAnswer = undefined;
 
 /////////////////////// event handlers for check boxes
 
