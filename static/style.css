@@ -42,3 +42,7 @@
 #other-department {
   display: none;
 }
+
+#button-container {
+  padding: 70px;
+}

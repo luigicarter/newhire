@@ -7,23 +7,24 @@ const form_fields = {
   phoneNumber: undefined,
   email: undefined,
   address: undefined,
-  employeeStatus: undefined,
-  typeOfEmployee: undefined,
-  fromPublicService: undefined,
-  ifUserFromPublic: false,
-  SupervisorOrManager: undefined,
-  performancePay: undefined,
-  buildingLocation: undefined,
-  teleworkOrOnsite: undefined,
-  employeeTitle: undefined,
-  employeeSector: undefined,
-  employeeBranch: undefined,
-  employeeDirectorate: undefined,
-  SupervisorName: undefined,
-  numberOfMonitors: undefined,
-  KeyboardAndMouse: undefined,
-  otherEquipment: undefined,
-  cellphone: undefined,
+  employeeStatus: undefined, /// casual , term, indeterminate ....
+  typeOfEmployee: undefined, /// core or ESS
+  fromPublicService: undefined, // is user coming from anotehr department or have the worked in the past
+  otherDepartment: undefined, /// if they user is from another department, it would be listed here
+  SupervisorOrManager: undefined, // to check if user is a manager or supervisor
+  performancePay: undefined, // will user receive performance pay
+  buildingLocation: undefined, // which building location us the user going to work in
+  teleworkOrOnsite: undefined, /// is user teleworking or on site
+  employeeTitle: undefined, // self explinatory
+  employeeSector: undefined, // self explinatory
+  employeeBranch: undefined, /// self explinatory
+  employeeDirectorate: undefined, /// self explinatory
+  SupervisorName: undefined, // self explinatory
+  numberOfMonitors: undefined, // self explinatory
+  KeyboardAndMouse: undefined, // self explinatory
+  otherEquipmentBool: undefined, // self explinatory
+  otherEquipmentText: undefined, /// self explinatory
+  cellphone: undefined, // self explinatory
   cellSupervisorOrManager: undefined,
   mailboxAccess: undefined,
   software: undefined,
