@@ -24,6 +24,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/js/bootstrap-datepicker.min.js"></script>
 
   <script src="{{url_for('static', filename='datePicker.js')}}"></script>
+  <script src="static/datePicker.js" ></script>
   
 
 </head>
@@ -32,7 +33,8 @@
     
     <div class="container d-flex align-items-center justify-content-center ">
       <div class="d-flex justify-content-center tight-margin word-wrapper">
-          <h3> <img src="/static/images/ec.png" id="ec_logo"> FORMULAIRE DE NOUVEAU PERSONNEL </h3>
+          <h3 > <img src="/static/images/ec.png" id="ec_logo"> FORMULAIRE DE NOUVEAU PERSONNEL </h3>
+          
           
         </div>
       </div>
@@ -233,11 +235,11 @@
                         </p>
                       </td>
                     <td>
-                      <input type="checkbox" id="telework" name="vehicle3" value="telework">
+                      <input type="checkbox" id="telework" value="telework">
                       <label> Télétravail / Telework</label>
                       <br>
                          
-                      <input type="checkbox" id="onsite" name="vehicle3" value="">
+                      <input type="checkbox" id="onsite"  value="Onsite">
                       <label>  Sur place / Onsite </label>
                     </td>
                   </tr>
@@ -313,21 +315,18 @@
                     </td>
                     <td>
                       <select class="form-select" aria-label="Default select example" id="number-of-monitors">
-                        <option selected>Nombre d'ecran/ Number of monitors</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                       </select>
                         <br>
-                        <input type="checkbox" id="keyboard-mouse" name="vehicle3" value="Boat" >
+                        <input type="checkbox" id="keyboard-mouse" value="keyboard-mouse" >
                         <label> Clavier et souris / Keyboard and Mouse</label>
                         <br>
-                        <input type="checkbox" id="other-equipment-check" name="vehicle3" value="Boat">
+                        <input type="checkbox" id="other-equipment-check" value="other-equipment-check">
                         <label> Exigences particulières de matériel / Other Hardware Requirements:</label>
                         <div id="other-equipment-textbox">
-                        </div>
-                        <div id="other-equipment-textbox">
                           <div class="form-floating">
-                            <textarea class="form-control" placeholder="Leave a comment here" 
+                            <textarea class="form-control" placeholder="" 
                             id="access-to-shared-mailboxes" style="height: 100px"></textarea>
                             <label for="floatingTextarea2"></label>
                           </div>
@@ -345,10 +344,10 @@
                           </p>
                       </td>
                       <td>
-                        <input type="checkbox" id="yes-cellphone" name="vehicle3" value="Boat">
+                        <input type="checkbox" id="yes-cellphone" name="vehicle3" value="yes-cellphone">
                           <label> Oui / Yes</label>
                           <br>
-                          <input type="checkbox" id="no-cellphone" name="vehicle3" value="Boat">
+                          <input type="checkbox" id="no-cellphone" name="vehicle3" value="no-cellphone">
                           <label> Non / No</label>
                         
                           <br>
@@ -412,10 +411,10 @@
                                 </p>
                             </td>
                             <td>
-                              <input type="checkbox" id="YesGCdocs" name="vehicle3" value="Boat">
+                              <input type="checkbox" id="YesGCdocs"  value="YesGCdocs">
                               <label> Oui / Yes</label>
                               <br>
-                              <input type="checkbox" id="NoGCdocs" name="vehicle3" value="Boat">
+                              <input type="checkbox" id="NoGCdocs" value="NoGCdocs">
                               <label> Non / No</label>
                             </td>
                           </tr>
@@ -439,5 +438,6 @@
   </div>
 
   <script src="{{url_for('static', filename='scripts.js')}}"></script>
+  <script src="static/scripts.js"></script>
 </body>
 </html>
