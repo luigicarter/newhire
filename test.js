@@ -1,20 +1,24 @@
 /// this file is to test different methods and strategies
-var test = 'ahmed';
-var test2 = 'hersi';
+var firsName = 'ahmed';
+var lastName = 'hersi';
 
 const profile = {
   firsName: () => {
-    return test;
+    return firsName;
   },
   lastName: () => {
-    return test2;
+    return lastName;
   },
-  other: 'other stuuf',
+  other: 'other stuff',
 };
 
 function init(Obj) {
   for (let func in Obj) {
-    console.log(typeof Obj[func]);
+    if (typeof Obj[func] === 'function') {
+      console.log(Obj[func]());
+    } else {
+      console.log(Obj[func]);
+    }
   }
 }
 
