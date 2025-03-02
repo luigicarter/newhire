@@ -66,6 +66,9 @@ const noGCDOCS = document.getElementById('NoGCdocs');
 
 //// hidden fields
 const previousDepartment = document.getElementById('other-department');
+const previousDepartmentField = document.getElementById(
+  'other-department-text'
+);
 
 //// Submit button for the form
 
@@ -102,12 +105,12 @@ const form_fields = {
   }, /// casual , term, indeterminate ....
 
   typeOfEmployee: undefined, /// assigned form check box /// core or ESS
-  fromPublicService: undefined, //assigned from check box // is user coming from anotehr department or have the worked in the past
+  fromPublicServiceField: undefined, //assigned from check box // is user coming from anotehr department or have the worked in the past
   otherDepartment: () => {
-    if (this.fromPublicService === true) {
-      return previousDepartment.value;
+    if (fromPublicService.checked) {
+      return previousDepartmentField.value;
     } else {
-      return undefined;
+      return 'not from public service';
     }
   }, /// if the user is from another department, it would be listed here
   SupervisorOrManager: undefined, // to check if user is a manager or supervisor
@@ -249,7 +252,7 @@ function checkBoxesHandler(event) {
   } else if (value === 'fromPublicService') {
     if (publicServiceCount === 0) {
       isEmployeeFromPublicService = true;
-      form_fields.fromPublicService = true;
+      form_fields.fromPublicServiceField = true;
       publicServiceCount++;
       notFromPublicService.disabled = true;
       previousDepartment.style.display = 'flex';
@@ -260,10 +263,10 @@ function checkBoxesHandler(event) {
       /// handles if the user DOUBLE clicks on "oui" if if they come from public service
     } else if (publicServiceCount > 0) {
       isEmployeeFromPublicService = undefined;
-      form_fields.fromPublicService = undefined;
+      form_fields.fromPublicServiceField = undefined;
       previousDepartment.style.display = 'none';
       publicServiceCount--;
-      console.log(form_fields.fromPublicService);
+      console.log(form_fields.fromPublicServiceField);
       notFromPublicService.disabled = false;
       console.log(isEmployeeFromPublicService);
     }
@@ -271,17 +274,17 @@ function checkBoxesHandler(event) {
     /// handles if the user clicks on "Non" if if they come from public service
     if (notFromPublicCount === 0) {
       isEmployeeFromPublicService = false;
-      form_fields.fromPublicService = false;
+      form_fields.fromPublicServiceField = false;
       notFromPublicCount++;
       fromPublicService.disabled = true;
-      console.log(form_fields.fromPublicService);
+      console.log(form_fields.fromPublicServiceField);
       /// handles if the user DOUBLE clicks on "Non" if if they come from public service
     } else if (notFromPublicCount > 0) {
       isEmployeeFromPublicService = undefined;
-      form_fields.fromPublicService = undefined;
+      form_fields.fromPublicServiceField = undefined;
       notFromPublicCount--;
       fromPublicService.disabled = false;
-      console.log(form_fields.fromPublicService);
+      console.log(form_fields.fromPublicServiceField);
     }
   } else if (value === 'isASupervior') {
     /// handles if the user clicks on "oui" for if the user is a supervisor/manager
@@ -499,6 +502,7 @@ noCell.addEventListener('click', checkBoxesHandler);
 
 const transferJson = {
   body: {},
+  other: {},
 };
 
 function RequestBuilder(JsonToSend, formObj) {
