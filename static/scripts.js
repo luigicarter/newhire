@@ -137,10 +137,17 @@ const form_fields = {
   }, /// self explinatory
   cellphone: undefined, // self explinatory
   cellSupervisorOrManager: undefined,
-  mailboxAccess: undefined,
-  software: undefined,
+  teleworkOrOnsite: undefined,
+  mailboxAccess: () => {
+    return mailboxAccess.value;
+  },
+  software: () => {
+    return softwareAccess.value;
+  },
   Gcdocs: undefined,
-  other: undefined,
+  other: () => {
+    return otherRequirments.value;
+  },
 };
 
 //// Tracking variables
