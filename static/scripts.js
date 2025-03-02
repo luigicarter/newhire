@@ -514,7 +514,7 @@ function RequestBuilder(JsonToSend, formObj) {
     }
   }
 
-  console.log(JsonToSend);
+  return JsonToSend;
 }
 
 /////// Submit Button

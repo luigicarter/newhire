@@ -23,3 +23,20 @@ function init(Obj) {
 }
 
 init(profile);
+
+class requestBuild {
+  constructor(name, year) {
+    this.name = name;
+    this.year = year;
+  }
+  sendReqeust() {
+    console.log(this.name + ' ' + this.year);
+    function moreInfo() {
+      console.log('your car is ' + this.name + ' ' + this.year);
+    }
+    moreInfo();
+  }
+}
+
+const request = new requestBuild('benz', 1994);
+request.sendReqeust();
