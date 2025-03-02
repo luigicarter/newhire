@@ -10,12 +10,12 @@ const employeeStatus = document.getElementById('employ-status');
 const buildingLocation = document.getElementById('building-location');
 const employeeTitle = document.getElementById('employee-title');
 const employeeSector = document.getElementById('employee-sector');
-const employeeBranch = document.getElementById('employee branch');
+const employeeBranch = document.getElementById('employee-branch');
 const employeeDirectorate = document.getElementById('directorate');
 const SupervisorName = document.getElementById('supervisor-name');
 const numberOfMonitors = document.getElementById('number-of-monitors');
 const otherEquipmentList = document.getElementById('other-equipment-list');
-const mailboxAccess = document.getElementById('access-to-shared-mailbox');
+const mailboxAccess = document.getElementById('access-to-shared-mailboxes');
 const softwareAccess = document.getElementById('software-access');
 const otherRequirments = document.getElementById('other-requirements');
 const isManagerOrSupervisorCell = document.getElementById('isManagement-cell');
@@ -66,6 +66,12 @@ const noGCDOCS = document.getElementById('NoGCdocs');
 
 //// hidden fields
 const previousDepartment = document.getElementById('other-department');
+
+//// Submit button for the form
+
+const SubmitButton = document.getElementById('SubmitButton');
+
+///
 
 // Object to record all fields
 //// each item returns the value of the field it's assigned to
@@ -490,3 +496,24 @@ noGCDOCS.addEventListener('click', checkBoxesHandler);
 ////cell phone checkboxes
 yesCell.addEventListener('click', checkBoxesHandler);
 noCell.addEventListener('click', checkBoxesHandler);
+
+const transferJson = {
+  body: {},
+};
+
+function RequestBuilder(JsonToSend, formObj) {
+  for (let entry in formObj) {
+    if (typeof formObj[entry] === 'function') {
+      JsonToSend['body'][entry] = `${formObj[entry]()}`;
+    } else {
+      JsonToSend['body'][entry] = `${formObj[entry]}`;
+    }
+  }
+
+  console.log(JsonToSend);
+}
+
+/////// Submit Button
+SubmitButton.addEventListener('click', () =>
+  RequestBuilder(transferJson, form_fields)
+);

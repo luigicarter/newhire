@@ -15,9 +15,9 @@ const profile = {
 function init(Obj) {
   for (let func in Obj) {
     if (typeof Obj[func] === 'function') {
-      console.log(Obj[func]());
+      console.log(func + ' ' + Obj[func]());
     } else {
-      console.log(Obj[func]);
+      console.log(func + ' ' + Obj[func]);
     }
   }
 }
