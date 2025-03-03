@@ -502,10 +502,9 @@ noCell.addEventListener('click', checkBoxesHandler);
 
 const transferJson = {
   body: {},
-  other: {},
 };
 
-function RequestBuilder(JsonToSend, formObj) {
+function formfieldsOrg(JsonToSend, formObj) {
   for (let entry in formObj) {
     if (typeof formObj[entry] === 'function') {
       JsonToSend['body'][entry] = `${formObj[entry]()}`;
@@ -517,7 +516,23 @@ function RequestBuilder(JsonToSend, formObj) {
   return JsonToSend;
 }
 
+async function sendForm() {
+  let formToSend = formfieldsOrg(transferJson, form_fields);
+  try {
+    const response = await fetch('http://localhost:8080/new_hire_form', {
+      method: 'POST',
+      body: JSON.stringify(formToSend),
+    });
+    if (!response.ok) {
+      throw new Error('Response Status: ' + ' ' + response.status);
+      return;
+    }
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.error(error.message);
+  }
+}
+
 /////// Submit Button
-SubmitButton.addEventListener('click', () =>
-  RequestBuilder(transferJson, form_fields)
-);
+SubmitButton.addEventListener('click', sendForm);
