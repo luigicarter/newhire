@@ -19,7 +19,7 @@ const server = http.createServer((req, res) => {
       res.write(data);
       res.end();
     });
-    // serves sripts file
+    /// serves sripts.js file
   } else if (req.url === '/jsFiles/scripts.js' && 'GET') {
     fs.readFile('jsFiles/scripts.js', (err, data) => {
       if (err) {
@@ -53,23 +53,23 @@ const server = http.createServer((req, res) => {
   } else if (req.url === '/images/ec.png' && 'GET') {
     fs.readFile('images/ec.png', (err, data) => {
       if (err) {
-        console.log('error getting elections canada picture: ' + err);
+        console.error('error getting elections canada picture: ' + err);
       }
       res.writeHead(200, { content: 'image/png' });
       res.write(data);
       res.end();
     });
-    // Submitting
+    // New hire form submition
   } else if (req.url === '/new_hire_form' && req.method === 'POST') {
     try {
       req.on('data', (data) => {
         try {
-          const jsonData = data.toString();
-          const parsedData = JSON.parse(jsonData);
+          const newHireFormData = data.toString();
+          const parsedData = JSON.parse(newHireFormData);
 
           new_hire_data = parsedData['body'];
           Object.keys(new_hire_data).forEach((element) => {
-            console.log(element + ' ' + new_hire_data[element]);
+            console.log(element + ' field value ->  ' + new_hire_data[element]);
           });
         } catch (error) {
           console.error(error);
@@ -80,7 +80,7 @@ const server = http.createServer((req, res) => {
     }
 
     res.writeHead(200, { content: 'application/json' });
-    res.write(JSON.stringify({ message: ' received json file' }));
+    res.write(JSON.stringify({ status: ' form has been accepted' }));
     res.end();
   }
 });

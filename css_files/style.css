@@ -46,3 +46,17 @@
 #button-container {
   padding: 70px;
 }
+
+#errorDiv {
+  background-color: red;
+  max-height: 30px;
+}
+
+#errorMessage {
+  color: white;
+  margin-top: 25px;
+}
+
+.container {
+  display: none;
+}

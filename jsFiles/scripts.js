@@ -74,13 +74,11 @@ const previousDepartmentField = document.getElementById(
 
 const SubmitButton = document.getElementById('SubmitButton');
 
-///
-
 // Object to record all fields
 //// each item returns the value of the field it's assigned to
 const form_fields = {
   startDate: () => {
-    return startDate.value;
+    return startDate.valueh212463;
   },
   endDate: () => {
     return endDate.value;
@@ -204,8 +202,6 @@ let gcdocsAccessAnswer = undefined;
 let yesCellCount = 0;
 let noCellCount = 0;
 let needCellAnswer = undefined;
-
-/// todo a function to assign values to the check box fields and dynamically grey them out when one is selected.
 
 function checkBoxesHandler(event) {
   const value = event.target.value;
@@ -500,6 +496,76 @@ noGCDOCS.addEventListener('click', checkBoxesHandler);
 yesCell.addEventListener('click', checkBoxesHandler);
 noCell.addEventListener('click', checkBoxesHandler);
 
+///// field validation
+
+const allInputs = document.getElementsByTagName('input');
+let allDropdowns = document.getElementsByTagName('select');
+
+async function formValidation() {
+  let missingInputCount = 0;
+  let missingDropdown = 0;
+  for (let i in allInputs) {
+    // console.log(allInputs[i]);
+    // console.log('  ');
+    if (
+      //// all static text input fields get detected here and changed visually
+      allInputs[i].value === '' &&
+      allInputs[i].type !== 'undefined' &&
+      allInputs[i].type !== 'checkbox' &&
+      allInputs[i].id !== 'other-department-text'
+    ) {
+      allInputs[i].placeholder = 'Please fill out this field';
+      allInputs[i].style.borderColor = 'red';
+      missingInputCount++;
+    } else if (
+      /// This is a conditionnal input field
+      allInputs[i].id === 'other-department-text' &&
+      form_fields.fromPublicServiceField === true &&
+      allInputs[i].value === ''
+    ) {
+      allInputs[i].placeholder = 'Please fill out this field';
+      allInputs[i].style.borderColor = 'red';
+      allInputs[i].style.borderstyle = 'solid';
+      missingInputCount++;
+      //// all  inputs that aren't checkboxes
+    } else if (allInputs[i].value !== '' && allInputs[i].type !== 'checkbox') {
+      try {
+        allInputs[i].style.borderColor = '#D3D3D3';
+      } catch (error) {
+        continue;
+      }
+      try {
+        allInputs[i].style.borderStyle = 'solid';
+      } catch (error) {
+        continue;
+      }
+      missingInputCount--;
+    }
+  }
+  /// selection boxes validation
+  for (let x in allDropdowns) {
+    if (allDropdowns[x].value === 'Noselection') {
+      allDropdowns[x].style.borderColor = 'red';
+      allDropdowns[x].style.borderstyle = 'solid';
+      missingDropdown++;
+    } else if (allDropdowns[x].value !== 'Noselection') {
+      try {
+        allDropdowns[x].style.borderColor = '#D3D3D3';
+      } catch (error) {
+        continue;
+      }
+      try {
+        allDropdowns[x].style.borderStyle = 'solid';
+      } catch (error) {
+        continue;
+      }
+    }
+    missingDropdown--;
+  }
+  console.log(missingDropdown);
+  console.log(missingInputCount);
+}
+
 const transferJson = {
   body: {},
 };
@@ -515,7 +581,7 @@ function formfieldsOrg(JsonToSend, formObj) {
 
   return JsonToSend;
 }
-
+//// function that sends new hire form data to http server
 async function sendForm() {
   let formToSend = formfieldsOrg(transferJson, form_fields);
   try {
@@ -525,7 +591,6 @@ async function sendForm() {
     });
     if (!response.ok) {
       throw new Error('Response Status: ' + ' ' + response.status);
-      return;
     }
     const data = await response.json();
     console.log(data);
@@ -535,4 +600,4 @@ async function sendForm() {
 }
 
 /////// Submit Button
-SubmitButton.addEventListener('click', sendForm);
+SubmitButton.addEventListener('click', formValidation);
