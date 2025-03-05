@@ -535,13 +535,43 @@ async function formValidation() {
     ) {
       console.log(allInputs[i].value);
 
-      if (
-        allInputs[i].value === 'Core' &&
-        employeePersonnelType === undefined
-      ) {
-        console.log('changed the border of ----> ' + allInputs[i].value);
-        typeEmError.style.display = 'flex';
-      }
+          if (
+            allInputs[i].value === 'Core' &&
+            form_fields.typeOfEmployee === undefined
+          ) {
+            typeEmError.style.display = 'flex';
+          } else if (
+            allInputs[i].value === 'fromPublicService' &&
+            form_fields.fromPublicServiceField  === undefined
+          ) {
+            publicEmError.style.display = 'flex';
+          } else if (
+            allInputs[i].value === 'isASupervior' &&
+            form_fields.SupervisorOrManager === undefined
+          ) {
+            supervisorORnotError.style.display = 'flex';
+          } else if (
+            allInputs[i].value === 'Employee will receive performance pay' &&
+            form_fields.performancePay === undefined
+          ) {
+            performancePayError.style.display = 'flex';
+          } else if (allInputs[i].value === "telework" &&
+            form_fields.teleworkOrOnsite === undefined){
+            OnsiteOrTeleworkError.style.display = "flex"
+          }  else if ( allInputs[i].value === "keyboard-mouse" &&
+            form_fields.KeyboardAndMouse === undefined
+          ) {
+            equipmentCheckError.style.display = "flex"
+          } else if ( allInputs[i].value === "yes-cellphone" &&
+            form_fields.cellphone === undefined){
+              cellCheckError.style.display = "flex"
+              
+          } else if( allInputs[i].value === "YesGCdocs" &&
+            form_fields.Gcdocs === undefined
+          ){
+            GcdocsError.style.display = "flex"
+          }
+
     }
   }
   /// selection boxes validation
