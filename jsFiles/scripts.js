@@ -706,6 +706,7 @@ function formfieldsOrg(JsonToSend, formObj) {
 //// function that sends new hire form data to http server
 async function sendForm() {
 
+  let serverData;
   isFormn = await formValidation(allInputs,allDropdowns)
   console.log(isFormn);
   
@@ -723,13 +724,18 @@ async function sendForm() {
       }
       try {
         const data = await response.json();
-        console.log(data);
+        console.log(data["status"]);
+        serverData = data;
       } catch (error) {
         console.error(error);
       }
     } catch (error) {
       console.error(error.message);
     }
+
+    // const customLink = await fetch()
+
+
   }
 
   }
