@@ -213,16 +213,14 @@ function checkBoxesHandler(event) {
       employeePersonnelType = value;
       form_fields.typeOfEmployee = value;
       employeeCoreCheckCount++;
-      console.log(form_fields.typeOfEmployee);
-      console.log(employeePersonnelType);
+
       employeeESSPersonel.disabled = true;
       //// handles if user unclicks core employee check box
     } else if (employeeCoreCheckCount > 0) {
       employeePersonnelType = undefined;
       form_fields.typeOfEmployee = undefined;
       employeeCoreCheckCount--;
-      console.log(employeePersonnelType);
-      console.log(form_fields.typeOfEmployee);
+
       employeeESSPersonel.disabled = false;
     }
   }
@@ -233,14 +231,12 @@ function checkBoxesHandler(event) {
       form_fields.typeOfEmployee = value;
       employeeESSCheckCount++;
       employeeCorePersonel.disabled = true;
-      console.log(form_fields.typeOfEmployee);
+
       /// handles if the user unclicks in ESS check box
     } else if (employeeESSCheckCount > 0) {
       employeePersonnelType = undefined;
       form_fields.typeOfEmployee = undefined;
       employeeESSCheckCount--;
-      console.log(employeePersonnelType);
-      console.log(form_fields.typeOfEmployee);
 
       employeeCorePersonel.disabled = false;
     }
@@ -252,19 +248,14 @@ function checkBoxesHandler(event) {
       publicServiceCount++;
       notFromPublicService.disabled = true;
       previousDepartment.style.display = 'flex';
-      console.log(
-        'this is from the form field obvject' + form_fields.fromPublicService
-      );
-      console.log(isEmployeeFromPublicService);
+
       /// handles if the user DOUBLE clicks on "oui" if if they come from public service
     } else if (publicServiceCount > 0) {
       isEmployeeFromPublicService = undefined;
       form_fields.fromPublicServiceField = undefined;
       previousDepartment.style.display = 'none';
       publicServiceCount--;
-      console.log(form_fields.fromPublicServiceField);
       notFromPublicService.disabled = false;
-      console.log(isEmployeeFromPublicService);
     }
   } else if (value === 'notFromPublicServer') {
     /// handles if the user clicks on "Non" if if they come from public service
@@ -273,14 +264,13 @@ function checkBoxesHandler(event) {
       form_fields.fromPublicServiceField = false;
       notFromPublicCount++;
       fromPublicService.disabled = true;
-      console.log(form_fields.fromPublicServiceField);
+
       /// handles if the user DOUBLE clicks on "Non" if if they come from public service
     } else if (notFromPublicCount > 0) {
       isEmployeeFromPublicService = undefined;
       form_fields.fromPublicServiceField = undefined;
       notFromPublicCount--;
       fromPublicService.disabled = false;
-      console.log(form_fields.fromPublicServiceField);
     }
   } else if (value === 'isASupervior') {
     /// handles if the user clicks on "oui" for if the user is a supervisor/manager
@@ -289,14 +279,13 @@ function checkBoxesHandler(event) {
       form_fields.SupervisorOrManager = true;
       isASuperviorAnswer = true;
       isASupervisorCount++;
-      console.log(isASuperviorAnswer);
+
       /// handles if the user DOUBLE clicks on "oui" for if the user is a supervisor/manager
     } else if (isASupervisorCount > 0) {
       notSupervisor.disabled = false;
       form_fields.SupervisorOrManager = undefined;
       isASupervisorCount--;
       isASuperviorAnswer = undefined;
-      console.log(isASuperviorAnswer);
     }
   } else if (value === 'Is not a supervior') {
     /// handles if the user  clicks on "NON" for if the user is a supervisor/manager
@@ -305,14 +294,13 @@ function checkBoxesHandler(event) {
       form_fields.SupervisorOrManager = false;
       isSupervisor.disabled = true;
       isNotASupervisorCount++;
-      console.log(isASuperviorAnswer);
+
       /// handles if the user  clicks on "NON" for if the user is a supervisor/manager
     } else if (isNotASupervisorCount > 0) {
       isASuperviorAnswer = undefined;
       form_fields.SupervisorOrManager = undefined;
       isSupervisor.disabled = false;
       isNotASupervisorCount--;
-      console.log(isASuperviorAnswer);
     }
     /// handles if the user  clicks on "Oui" for if the user is going to receive performance pay
   } else if (value === 'Employee will receive performance pay') {
@@ -328,7 +316,6 @@ function checkBoxesHandler(event) {
       form_fields.performancePay = undefined;
       yesPerformancePayCount--;
       performancePayAnswer = undefined;
-      console.log(performancePayAnswer);
     }
     /// handles if the user  clicks on "NON" for if the user is going to receive performance pay
   } else if (value === 'Employee not will receive performance pay') {
@@ -337,14 +324,13 @@ function checkBoxesHandler(event) {
       form_fields.performancePay = false;
       noPerformancePayCount++;
       performancePayAnswer = false;
-      console.log(performancePayAnswer);
+
       /// handles if the user DOUBLE clicks on "NON" for if the user is going to receive performance pay
     } else if (noPerformancePayCount > 0) {
       yesPerformancePay.disabled = false;
       form_fields.performancePay = undefined;
       noPerformancePayCount--;
       performancePayAnswer = undefined;
-      console.log(performancePayAnswer);
     }
     /// handles if the user  clicks on "telework" for if the user is going to work from home
   } else if (value === 'telework') {
@@ -353,14 +339,13 @@ function checkBoxesHandler(event) {
       onSite.disabled = true;
       yesTeleworkCount++;
       teleworkOrOnsite = 'Telework';
-      console.log(teleworkOrOnsite);
+
       /// handles if the user  clicks on double "telework" for if the user is going to work from home
     } else if (yesTeleworkCount > 0) {
       onSite.disabled = false;
       form_fields.teleworkOrOnsite = undefined;
       yesTeleworkCount--;
       teleworkOrOnsite = undefined;
-      console.log(teleworkOrOnsite);
     }
     /// handles if the user  clicks on "Onsite" for if the user is going to work from home
   } else if (value === 'Onsite') {
@@ -369,14 +354,13 @@ function checkBoxesHandler(event) {
       form_fields.teleworkOrOnsite = 'Onsite';
       yesOnsiteCount++;
       teleworkOrOnsite = 'Onsite';
-      console.log(teleworkOrOnsite);
+
       /// handles if the user double clicks on "Onsite" for if the user is going to work from home
     } else if (yesOnsiteCount > 0) {
       telework.disabled = false;
       form_fields.teleworkOrOnsite = undefined;
       yesOnsiteCount--;
       teleworkOrOnsite = undefined;
-      console.log(teleworkOrOnsite);
     }
     /// handles if the user  clicks on "keyboard and mouse" for if the user needs a mouse and keyboard
   } else if (value === 'keyboard-mouse') {
@@ -384,13 +368,12 @@ function checkBoxesHandler(event) {
       form_fields.KeyboardAndMouse = true;
       needMouseAndKeyboard = true;
       yesNeedAKeyboardCount++;
-      console.log(needMouseAndKeyboard);
+
       /// handles if the user double clicks on "keyboard and mouse" for if the user needs a mouse and keyboard
     } else if (yesNeedAKeyboardCount > 0) {
       needMouseAndKeyboard = false;
       form_fields.KeyboardAndMouse = undefined;
       yesNeedAKeyboardCount--;
-      console.log(needMouseAndKeyboard);
     }
     /// handles if the user  clicks on "Other Hardware Requirements:" for if the user needs more equipment
   } else if (value === 'other-equipment-check') {
@@ -398,13 +381,12 @@ function checkBoxesHandler(event) {
       otherEquipmentAnswer = true;
       otherEquipmentText.style.display = 'flex';
       needOtherEquipmentCount++;
-      console.log(otherEquipmentAnswer);
+
       /// handles if the user double clicks on "Other Hardware Requirements:" for if the user needs more equipment
     } else if (needOtherEquipmentCount > 0) {
       otherEquipmentAnswer = false;
       otherEquipmentText.style.display = 'none';
       needOtherEquipmentCount--;
-      console.log(otherEquipmentAnswer);
     }
     /// handles if the user  clicks on "oui" for if the user needs GCDOCS Access
   } else if (value === 'YesGCdocs') {
@@ -413,14 +395,13 @@ function checkBoxesHandler(event) {
       noGCDOCS.disabled = true;
       gcdocsAccessAnswer = true;
       yesGCdocsCount++;
-      console.log(gcdocsAccessAnswer);
+
       /// handles if the user double clicks on "oui" for if the user needs GCDOCS Access
     } else if (yesGCdocsCount > 0) {
       noGCDOCS.disabled = false;
       gcdocsAccessAnswer = undefined;
       form_fields.Gcdocs = undefined;
       yesGCdocsCount--;
-      console.log(gcdocsAccessAnswer);
     }
   } else if (value === 'NoGCdocs') {
     if (noGCdocsCount === 0) {
@@ -428,13 +409,11 @@ function checkBoxesHandler(event) {
       form_fields.Gcdocs = false;
       noGCdocsCount++;
       gcdocsAccessAnswer = false;
-      console.log(gcdocsAccessAnswer);
     } else if (noGCdocsCount > 0) {
       yesGCDOCS.disabled = false;
       form_fields.Gcdocs = undefined;
       noGCdocsCount--;
       gcdocsAccessAnswer = undefined;
-      console.log(gcdocsAccessAnswer);
     }
   } else if (value === 'yes-cellphone') {
     if (yesCellCount === 0) {
@@ -442,13 +421,11 @@ function checkBoxesHandler(event) {
       form_fields.cellphone = true;
       yesCellCount++;
       needCellAnswer = true;
-      console.log(needCellAnswer);
     } else if (yesCellCount > 0) {
       noCell.disabled = false;
       form_fields.cellphone = undefined;
       yesCellCount--;
       needCellAnswer = undefined;
-      console.log(needCellAnswer);
     }
   } else if (value === 'no-cellphone') {
     if (noCellCount === 0) {
@@ -457,14 +434,12 @@ function checkBoxesHandler(event) {
       noCellCount++;
       needCellAnswer = false;
       isManagerOrSupervisorCell.disabled = true;
-      console.log(needCellAnswer);
     } else if (noCellCount > 0) {
       yesCell.disabled = false;
       isManagerOrSupervisorCell.disabled = false;
       noCellCount--;
       form_fields.cellphone = undefined;
       needCellAnswer = undefined;
-      console.log(needCellAnswer);
     }
   }
 }
@@ -504,6 +479,7 @@ let allDropdowns = document.getElementsByTagName('select');
 async function formValidation() {
   let missingInputCount = 0;
   let missingDropdown = 0;
+  let checkboxes = 0;
   for (let i in allInputs) {
     // console.log(allInputs[i]);
     // console.log('  ');
@@ -541,6 +517,10 @@ async function formValidation() {
       }
       missingInputCount--;
     }
+    //// validation of all checkboxes
+    else if (allInputs[i].type === 'checkbox') {
+      console.log(allInputs[i]);
+    }
   }
   /// selection boxes validation
   for (let x in allDropdowns) {
@@ -556,20 +536,23 @@ async function formValidation() {
       }
       try {
         allDropdowns[x].style.borderStyle = 'solid';
+        missingDropdown--;
       } catch (error) {
         continue;
       }
     }
     missingDropdown--;
   }
+  //// validating checkboxe entry
+
   console.log(missingDropdown);
   console.log(missingInputCount);
 }
-
+///// object that's used to send form informtion to http server
 const transferJson = {
   body: {},
 };
-
+///////// function that adds the forms data to the above object that's created to transfer. I don't know why I'm creating another object but I am. Seems like the right thing to do
 function formfieldsOrg(JsonToSend, formObj) {
   for (let entry in formObj) {
     if (typeof formObj[entry] === 'function') {
@@ -581,8 +564,10 @@ function formfieldsOrg(JsonToSend, formObj) {
 
   return JsonToSend;
 }
+
 //// function that sends new hire form data to http server
 async function sendForm() {
+  /// async to make none blocking for loading animation to add. I don't know why I get adding usaer interactive features
   let formToSend = formfieldsOrg(transferJson, form_fields);
   try {
     const response = await fetch('http://localhost:8080/new_hire_form', {
