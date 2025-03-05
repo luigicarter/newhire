@@ -57,6 +57,17 @@
   margin-top: 25px;
 }
 
-.container {
+.checkboxUnchecked {
+  border: solid;
+  border-radius: 20px;
+  padding: 2px;
+  max-width: 250px;
+  color: white;
+  background-color: red;
+  border-color: red;
+  display: none;
+}
+
+#pageError {
   display: none;
 }

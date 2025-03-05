@@ -473,6 +473,17 @@ noCell.addEventListener('click', checkBoxesHandler);
 
 ///// field validation
 
+/// error fields for checkboxes
+typeEmError = document.getElementById('typeEmError');
+publicEmError = document.getElementById('publicEmError');
+supervisorORNot = document.getElementById('supervisorORnotError');
+performancePayError = document.getElementById('performancePayError');
+OnsiteOrTeleworkError = document.getElementById('OnsiteOrTeleworkError');
+equipmentCheckError = document.getElementById('equipmentCheckError');
+cellCheckError = document.getElementById('cellCheckError');
+GcdocsError = document.getElementById('GcdocsError');
+
+//// all mandatory inputs
 const allInputs = document.getElementsByTagName('input');
 let allDropdowns = document.getElementsByTagName('select');
 
@@ -494,7 +505,7 @@ async function formValidation() {
       allInputs[i].style.borderColor = 'red';
       missingInputCount++;
     } else if (
-      /// This is a conditionnal input field
+      /// This is for the conditionnal input field
       allInputs[i].id === 'other-department-text' &&
       form_fields.fromPublicServiceField === true &&
       allInputs[i].value === ''
@@ -518,8 +529,19 @@ async function formValidation() {
       missingInputCount--;
     }
     //// validation of all checkboxes
-    else if (allInputs[i].type === 'checkbox') {
-      console.log(allInputs[i]);
+    else if (
+      allInputs[i].type === 'checkbox' &&
+      allInputs[i].checked === false
+    ) {
+      console.log(allInputs[i].value);
+
+      if (
+        allInputs[i].value === 'Core' &&
+        employeePersonnelType === undefined
+      ) {
+        console.log('changed the border of ----> ' + allInputs[i].value);
+        typeEmError.style.display = 'flex';
+      }
     }
   }
   /// selection boxes validation
@@ -577,8 +599,12 @@ async function sendForm() {
     if (!response.ok) {
       throw new Error('Response Status: ' + ' ' + response.status);
     }
-    const data = await response.json();
-    console.log(data);
+    try {
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error(error);
+    }
   } catch (error) {
     console.error(error.message);
   }

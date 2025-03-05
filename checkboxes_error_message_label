@@ -1,0 +1,8 @@
+core = typeEmError
+user from public services = publicEmError
+superviorORNot = supervisorORnotError
+performance pay = performancePayError
+OnsiteOrTeleworkError = OnsiteOrTeleworkError
+equipmentCheckError = equipmentCheckError
+cellCheckError = cellCheckError
+GcdocsError = GcdocsError

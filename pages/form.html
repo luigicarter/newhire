@@ -29,13 +29,15 @@
   
 
 </head>
-<body>
-  <div  id="errorDiv"  class="container d-flex align-items-center justify-content-center ">
-    <div  class="d-flex justify-content-center tight-margin word-wrapper " >
-      <p id="errorMessage" > Please fill all necessary fields </p>
+<div id="pageError">
+  <body>
+    <div  id="errorDiv"  class="container d-flex align-items-center justify-content-center ">
+      <div  class="d-flex justify-content-center tight-margin word-wrapper " >
+        <p id="errorMessage" > Please fill all necessary fields </p>
+      </div>
     </div>
   </div>
-      
+    
         
 
 
@@ -157,7 +159,8 @@
                 <tr>
                   <th scope="row"></th>
                   <td> Type d'emploi / Employment Type </td>
-                  <td>
+                  <td> 
+                      <p id="typeEmError" class="checkboxUnchecked" > Please Check one of these boxes </p>
                       <input type="checkbox" id="core-personel" name="vehicle3" value="Core" >
                       <label> Personnel de base / Core Personnel</label>
                       <br>
@@ -174,6 +177,7 @@
                         Required for MyKey creation or transfer</p>
                     </td>
                   <td>
+                    <p id="publicEmError" class="checkboxUnchecked" > Please Check one of these boxes </p>
                     <input type="checkbox" id="from-public-service"  value="fromPublicService">
                     <label>  Oui / Yes</label>
                     <br>
@@ -197,6 +201,7 @@
                     de gestionnaire ou de cadre ? / Is this a supervisor, manager or executive position? 
                   </td>
                   <td>
+                    <p id="supervisorORnotError" class="checkboxUnchecked" > Please Check one of these boxes </p>
                     <input type="checkbox" id="IsSupervisor" name="vehicle3" value="isASupervior">
                     <label>  Oui / Yes</label>
                     <br>
@@ -213,6 +218,7 @@
                     / Will new employee be subject to performance pay?
                   </td>
                   <td>
+                    <p id="performancePayError" class="checkboxUnchecked" > Please Check one of these boxes </p>
                     <input type="checkbox" id="performance-pay-yes" name="vehicle3" value="Employee will receive performance pay">
                     <label>  Oui / Yes</label>
                     <br>
@@ -244,6 +250,8 @@
                         </p>
                       </td>
                     <td>
+                      <p id="OnsiteOrTeleworkError" class="checkboxUnchecked" > Please Check one of these boxes </p>
+                    
                       <input type="checkbox" id="telework" value="telework">
                       <label> Télétravail / Telework</label>
                       <br>
@@ -328,6 +336,8 @@
                         <option value="2">2</option>
                       </select>
                         <br>
+                        <p id="equipmentCheckError" class="checkboxUnchecked" > Please Check one of these boxes </p>
+                    
                         <input type="checkbox" id="keyboard-mouse" value="keyboard-mouse" >
                         <label> Clavier et souris / Keyboard and Mouse</label>
                         <br>
@@ -353,6 +363,8 @@
                           </p>
                       </td>
                       <td>
+                        <p id="cellCheckError" class="checkboxUnchecked" > Please Check one of these boxes </p>
+                    
                         <input type="checkbox" id="yes-cellphone" name="vehicle3" value="yes-cellphone">
                           <label> Oui / Yes</label>
                           <br>
@@ -420,6 +432,8 @@
                                 </p>
                             </td>
                             <td>
+                              <p id="GcdocsError" class="checkboxUnchecked" > Please Check one of these boxes </p>
+                    
                               <input type="checkbox" id="YesGCdocs"  value="YesGCdocs">
                               <label> Oui / Yes</label>
                               <br>
