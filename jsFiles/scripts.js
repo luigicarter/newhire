@@ -487,7 +487,7 @@ GcdocsError = document.getElementById('GcdocsError');
 const allInputs = document.getElementsByTagName('input');
 let allDropdowns = document.getElementsByTagName('select');
 
-async function formValidation(htmlINputs, htmlDropdowns) {
+function formValidation(htmlINputs, htmlDropdowns) {
   let missingInputCount = 0;
   let missingDropdown = 0;
   let checkboxes = 0;
@@ -660,20 +660,26 @@ async function formValidation(htmlINputs, htmlDropdowns) {
   console.log("checkboxes ---->" + checkboxes);
   console.log("missing dropdwon ---> " + missingDropdown);
   console.log("missing input counts ---->" + missingInputCount);
+  
+  let check_hidden_service_field = form_fields["otherDepartment"]()
+  
   if(checkboxes === 0 && 
-    missingDropdown === -7 && 
-    missingInputCount === -13 &&
-     form_fields.otherDepartment === undefined){
+    missingDropdown <= -7 && 
+    check_hidden_service_field === "not from public service" &&
+    missingInputCount === -13 
+    )
+    {
 
     return true;
     
   } else if (checkboxes === 0 && 
-    missingDropdown === -7 && 
+    missingDropdown <= -7 && 
     missingInputCount === -14 )
     {
       return true
       
     } else {
+
       return false;
       
     }
@@ -695,28 +701,38 @@ function formfieldsOrg(JsonToSend, formObj) {
   return JsonToSend;
 }
 
+
+
 //// function that sends new hire form data to http server
 async function sendForm() {
+
+  isFormn = await formValidation(allInputs,allDropdowns)
+  console.log(isFormn);
+  
   /// async to make none blocking for loading animation to add. I don't know why I get adding usaer interactive features
-  let formToSend = formfieldsOrg(transferJson, form_fields);
-  try {
-    const response = await fetch('http://localhost:8080/new_hire_form', {
-      method: 'POST',
-      body: JSON.stringify(formToSend),
-    });
-    if (!response.ok) {
-      throw new Error('Response Status: ' + ' ' + response.status);
-    }
+  if(isFormn === true){
+
+    let formToSend = formfieldsOrg(transferJson, form_fields);
     try {
-      const data = await response.json();
-      console.log(data);
+      const response = await fetch('http://localhost:8080/new_hire_form', {
+        method: 'POST',
+        body: JSON.stringify(formToSend),
+      });
+      if (!response.ok) {
+        throw new Error('Response Status: ' + ' ' + response.status);
+      }
+      try {
+        const data = await response.json();
+        console.log(data);
+      } catch (error) {
+        console.error(error);
+      }
     } catch (error) {
-      console.error(error);
+      console.error(error.message);
     }
-  } catch (error) {
-    console.error(error.message);
   }
-}
+
+  }
 
 /////// Submit Button
-SubmitButton.addEventListener('click', () => formValidation(allInputs,allDropdowns));
+SubmitButton.addEventListener('click', sendForm);

@@ -7,7 +7,6 @@ const port = 8080;
 let new_hire_data;
 
 const server = http.createServer((req, res) => {
-  console.log(req.url);
 
   //// serves new hire form html
   if (req.url === '/' && req.method === 'GET') {
@@ -61,6 +60,8 @@ const server = http.createServer((req, res) => {
     });
     // New hire form submition
   } else if (req.url === '/new_hire_form' && req.method === 'POST') {
+    console.log("receiving new hire form");
+    
     try {
       req.on('data', (data) => {
         try {
@@ -80,7 +81,9 @@ const server = http.createServer((req, res) => {
     }
 
     res.writeHead(200, { content: 'application/json' });
-    res.write(JSON.stringify({ status: ' form has been accepted' }));
+    res.write(JSON.stringify({ status: ' form has been accepted',
+      error : "no issue with form"
+     }));
     res.end();
   }
 });
