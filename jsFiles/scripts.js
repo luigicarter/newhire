@@ -205,7 +205,7 @@ let needCellAnswer = undefined;
 
 function checkBoxesHandler(event) {
   const value = event.target.value;
-  console.log(`value of the clicked check box is : ${value}`);
+  
 
   /// handles if user clicks on core employyee box
   if (value === 'Core') {
@@ -487,7 +487,7 @@ GcdocsError = document.getElementById('GcdocsError');
 const allInputs = document.getElementsByTagName('input');
 let allDropdowns = document.getElementsByTagName('select');
 
-async function formValidation() {
+async function formValidation(htmlINputs, htmlDropdowns) {
   let missingInputCount = 0;
   let missingDropdown = 0;
   let checkboxes = 0;
@@ -496,33 +496,33 @@ async function formValidation() {
     // console.log('  ');
     if (
       //// all static text input fields get detected here and changed visually
-      allInputs[i].value === '' &&
-      allInputs[i].type !== 'undefined' &&
-      allInputs[i].type !== 'checkbox' &&
-      allInputs[i].id !== 'other-department-text'
+      htmlINputs[i].value === '' &&
+      htmlINputs[i].type !== 'undefined' &&
+      htmlINputs[i].type !== 'checkbox' &&
+      htmlINputs[i].id !== 'other-department-text'
     ) {
-      allInputs[i].placeholder = 'Please fill out this field';
-      allInputs[i].style.borderColor = 'red';
+      htmlINputs[i].placeholder = 'Please fill out this field';
+      htmlINputs[i].style.borderColor = 'red';
       missingInputCount++;
     } else if (
       /// This is for the conditionnal input field
-      allInputs[i].id === 'other-department-text' &&
+      htmlINputs[i].id === 'other-department-text' &&
       form_fields.fromPublicServiceField === true &&
-      allInputs[i].value === ''
+      htmlINputs[i].value === ''
     ) {
-      allInputs[i].placeholder = 'Please fill out this field';
-      allInputs[i].style.borderColor = 'red';
-      allInputs[i].style.borderstyle = 'solid';
+      htmlINputs[i].placeholder = 'Please fill out this field';
+      htmlINputs[i].style.borderColor = 'red';
+      htmlINputs[i].style.borderstyle = 'solid';
       missingInputCount++;
       //// all  inputs that aren't checkboxes
-    } else if (allInputs[i].value !== '' && allInputs[i].type !== 'checkbox') {
+    } else if (htmlINputs[i].value !== '' && htmlINputs[i].type !== 'checkbox') {
       try {
-        allInputs[i].style.borderColor = '#D3D3D3';
+        htmlINputs[i].style.borderColor = '#D3D3D3';
       } catch (error) {
         continue;
       }
       try {
-        allInputs[i].style.borderStyle = 'solid';
+        htmlINputs[i].style.borderStyle = 'solid';
       } catch (error) {
         continue;
       }
@@ -530,64 +530,125 @@ async function formValidation() {
     }
     //// validation of all checkboxes
     else if (
-      allInputs[i].type === 'checkbox' &&
-      allInputs[i].checked === false
+      htmlINputs[i].type === 'checkbox' &&
+      htmlINputs[i].checked === false
     ) {
-      console.log(allInputs[i].value);
+      // console.log("processing the following component: " + htmlINputs[i].id);
+      checkboxes++;
 
           if (
-            allInputs[i].value === 'Core' &&
+            htmlINputs[i].value === 'Core' &&
             form_fields.typeOfEmployee === undefined
           ) {
             typeEmError.style.display = 'flex';
           } else if (
-            allInputs[i].value === 'fromPublicService' &&
+            htmlINputs[i].value === 'fromPublicService' &&
             form_fields.fromPublicServiceField  === undefined
           ) {
             publicEmError.style.display = 'flex';
           } else if (
-            allInputs[i].value === 'isASupervior' &&
+            htmlINputs[i].value === 'isASupervior' &&
             form_fields.SupervisorOrManager === undefined
           ) {
             supervisorORnotError.style.display = 'flex';
           } else if (
-            allInputs[i].value === 'Employee will receive performance pay' &&
+            htmlINputs[i].value === 'Employee will receive performance pay' &&
             form_fields.performancePay === undefined
           ) {
             performancePayError.style.display = 'flex';
-          } else if (allInputs[i].value === "telework" &&
-            form_fields.teleworkOrOnsite === undefined){
+          } 
+          else if (
+            htmlINputs[i].value === "telework" &&
+            form_fields.teleworkOrOnsite === undefined
+          ){
             OnsiteOrTeleworkError.style.display = "flex"
-          }  else if ( allInputs[i].value === "keyboard-mouse" &&
+          } 
+           else if ( 
+            htmlINputs[i].value === "keyboard-mouse" &&
             form_fields.KeyboardAndMouse === undefined
           ) {
             equipmentCheckError.style.display = "flex"
-          } else if ( allInputs[i].value === "yes-cellphone" &&
-            form_fields.cellphone === undefined){
-              cellCheckError.style.display = "flex"
+          } else if ( 
+            htmlINputs[i].value === "yes-cellphone" &&
+            form_fields.cellphone === undefined)
+            {
+            cellCheckError.style.display = "flex"
               
-          } else if( allInputs[i].value === "YesGCdocs" &&
+          } else if( 
+            htmlINputs[i].value === "YesGCdocs" &&
             form_fields.Gcdocs === undefined
           ){
             GcdocsError.style.display = "flex"
           }
 
-    }
+    } else if (
+      htmlINputs[i].type === 'checkbox' &&
+      htmlINputs[i].checked === true
+    ) {
+      checkboxes--;
+
+          if (
+            htmlINputs[i].value === 'Core' || htmlINputs[i].value === 'ESS' &&
+            form_fields.typeOfEmployee !== undefined 
+          ) {
+            typeEmError.style.display = 'none';
+          } else if (
+            htmlINputs[i].value === 'fromPublicService' || htmlINputs[i].value ==="notFromPublicServer" 
+            && form_fields.fromPublicServiceField  !== undefined
+          ) {
+            publicEmError.style.display = 'none';
+          } else if (
+            htmlINputs[i].value === 'isASupervior' ||  htmlINputs[i].value === "Is not a supervior" &&
+            form_fields.SupervisorOrManager !== undefined
+          ) {
+            supervisorORnotError.style.display = 'none';
+          } else if (
+            htmlINputs[i].value === 'Employee will receive performance pay' ||  htmlINputs[i].value === "Employee not will receive performance pay" &&
+            form_fields.performancePay !== undefined
+          ) {
+            performancePayError.style.display = 'none';
+          } else if (
+            htmlINputs[i].value === "telework" ||  htmlINputs[i].value === "Onsite"&& 
+            form_fields.teleworkOrOnsite !== undefined)
+            {
+            OnsiteOrTeleworkError.style.display = "none"
+          
+          }  else if ( htmlINputs[i].value === "keyboard-mouse" &&
+            form_fields.KeyboardAndMouse !== undefined
+          ) {
+            equipmentCheckError.style.display = "none"
+
+          } else if ( htmlINputs[i].value === "yes-cellphone" || htmlINputs[i].value === "no-cellphone" &&
+            form_fields.cellphone !== undefined){
+              cellCheckError.style.display = "none"
+              
+          } else if( htmlINputs[i].value === "YesGCdocs" || htmlINputs[i].value === "NoGCdocs" &&
+            form_fields.Gcdocs !== undefined
+          ){
+            GcdocsError.style.display = "none"
+          }
+
+    } 
+
   }
   /// selection boxes validation
-  for (let x in allDropdowns) {
-    if (allDropdowns[x].value === 'Noselection') {
-      allDropdowns[x].style.borderColor = 'red';
-      allDropdowns[x].style.borderstyle = 'solid';
+  for (let x in htmlDropdowns) {
+   if( htmlDropdowns[x].id ==="isManagement-cell" && form_fields.cellphone === false ){
+    htmlDropdowns[x].style.borderColor = '#D3D3D3';
+    htmlDropdowns[x].style.borderStyle = 'solid';
+   }
+    else if (htmlDropdowns[x].value === 'Noselection') {
+      htmlDropdowns[x].style.borderColor = 'red';
+      htmlDropdowns[x].style.borderstyle = 'solid';
       missingDropdown++;
-    } else if (allDropdowns[x].value !== 'Noselection') {
+    } else if (htmlDropdowns[x].value !== 'Noselection') {
       try {
-        allDropdowns[x].style.borderColor = '#D3D3D3';
+        htmlDropdowns[x].style.borderColor = '#D3D3D3';
       } catch (error) {
         continue;
       }
       try {
-        allDropdowns[x].style.borderStyle = 'solid';
+        htmlDropdowns[x].style.borderStyle = 'solid';
         missingDropdown--;
       } catch (error) {
         continue;
@@ -596,9 +657,26 @@ async function formValidation() {
     missingDropdown--;
   }
   //// validating checkboxe entry
+  console.log("checkboxes ---->" + checkboxes);
+  console.log("missing dropdwon ---> " + missingDropdown);
+  console.log("missing input counts ---->" + missingInputCount);
+  if(checkboxes === 0 && 
+    missingDropdown === -7 && 
+    missingInputCount === -13 &&
+     form_fields.otherDepartment === undefined){
 
-  console.log(missingDropdown);
-  console.log(missingInputCount);
+    return true;
+    
+  } else if (checkboxes === 0 && 
+    missingDropdown === -7 && 
+    missingInputCount === -14 )
+    {
+      return true
+      
+    } else {
+      return false;
+      
+    }
 }
 ///// object that's used to send form informtion to http server
 const transferJson = {
@@ -641,4 +719,4 @@ async function sendForm() {
 }
 
 /////// Submit Button
-SubmitButton.addEventListener('click', formValidation);
+SubmitButton.addEventListener('click', () => formValidation(allInputs,allDropdowns));
