@@ -78,7 +78,7 @@ const SubmitButton = document.getElementById('SubmitButton');
 //// each item returns the value of the field it's assigned to
 const form_fields = {
   startDate: () => {
-    return startDate.valueh212463;
+    return startDate.value;
   },
   endDate: () => {
     return endDate.value;
@@ -724,16 +724,29 @@ async function sendForm() {
       }
       try {
         const data = await response.json();
-        console.log(data["status"]);
+        console.log(data["status"]) ;
         serverData = data;
       } catch (error) {
-        console.error(error);
+        console.error(error.message);
       }
     } catch (error) {
       console.error(error.message);
     }
+    downloadPAgeLink = "http://localhost:8080/pdf/"+ serverData["filetoken"]
+    
+    window.location.href = downloadPAgeLink
+    
+   
+    // const customLink = await fetch("http://localhost:8080/pdf/"+serverData["filetoken"],{
+    //   method: "POST",
+    // })
+    // if (!customLink){
+    //   throw new Error("couln't create pdf file")
+    // }
+    // pdfResponse = await customLink.json()
+    // console.log(" server is response to pdf page " + " "+ pdfResponse["status"]);
+    
 
-    // const customLink = await fetch()
 
 
   }
