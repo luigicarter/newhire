@@ -701,6 +701,11 @@ function formfieldsOrg(JsonToSend, formObj) {
   return JsonToSend;
 }
 
+/// html to send to the server
+
+const body = document.getElementsByTagName("body")
+
+
 
 
 //// function that sends new hire form data to http server
@@ -733,22 +738,9 @@ async function sendForm() {
       console.error(error.message);
     }
     downloadPAgeLink = "http://localhost:8080/pdf/"+ serverData["filetoken"]
-    
-    window.location.href = downloadPAgeLink
-    
-   
-    // const customLink = await fetch("http://localhost:8080/pdf/"+serverData["filetoken"],{
-    //   method: "POST",
-    // })
-    // if (!customLink){
-    //   throw new Error("couln't create pdf file")
-    // }
-    // pdfResponse = await customLink.json()
-    // console.log(" server is response to pdf page " + " "+ pdfResponse["status"]);
-    
-
-
-
+    if (serverData["status"] === "okay"){ 
+      window.location.href = downloadPAgeLink
+    }
   }
 
   }

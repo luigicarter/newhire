@@ -1,22 +1,29 @@
-// import http from "http"
-// import url from "url"
-// import fs from "fs"
-// import crypto from "crypto"
+import http from "http"
+import url from "url"
+import fs from "fs"
+import crypto from "crypto"
+import os from "os"
+import { error } from "console"
 
-const http = require('http');
-const url = require('url');
-const fs = require('fs');
-const { log } = require('console');
-const crypto = require("crypto");
-const { json } = require('stream/consumers');
-const { callbackify } = require('util');
+// const http = require('http');
+// const url = require('url');
+// const fs = require('fs');
+// const { log } = require('console');
+// const crypto = require("crypto");
+// const { json } = require('stream/consumers');
+// const { callbackify } = require('util');
 
 
 const port = 8080;
 
-let new_hire_data;
 
-let new_data_Store = {}
+
+
+
+function createPDF(){
+
+}
+
 
 
 
@@ -109,37 +116,65 @@ const server = http.createServer((req, res) => {
 
     // New hire form submition
   } else if (req.url === '/new_hire_form' && req.method === 'POST') {
+    let new_hire_data;
 
-    const salt = crypto.randomBytes(16).toString('hex');
-    let hashCode = crypto.createHash('sha256').update('hello' + salt).digest('hex');
+    const salt = crypto.randomBytes(16).toString('hex'); //// creates unique identifieder to make a hash
+    let hashCode = crypto.createHash('sha256').update('hello' + salt).digest('hex');//// this is the user's unique hash to track file 
     
     console.log("receiving new hire form");
-    
-    
+
+    /// capturing new hire form date 
     try {
       req.on('data', (data) => {
-        try {
+      //// reading json file from client with form data 
+      /////////making json file into string
           const newHireFormData = data.toString();
+          ////parsing to json 
           const parsedData = JSON.parse(newHireFormData);
+         ///holding data in temp vaiavle to use later 
 
-         new_hire_data = parsedData['body'];
-         new_data_Store[hashCode] = new_hire_data
-      
+          new_hire_data = parsedData['body'];
+         //// write file to json file
+         console.log("reading data ");
+         //// reading json file 
+        fs.readFile("form_json_files/newHireJson.json", (err, data)=>{
+          if(err){
+            console.log(" error is " +err);
+          }
+          let cleantJsonFile = {}
+          try {
+            /// LOADING json file into memory 
+            cleantJsonFile = JSON.parse(data)
+
+          }catch(parseError){
+            console.error(" error with parsing data " + parseError)
+
+          }
+          /// adding new hire form to json file with a 256 hash as a key identifer      
+          cleantJsonFile[hashCode] = new_hire_data
+          let newData = JSON.stringify(cleantJsonFile,  null, 4)
+          /// writing to json file  
+          fs.writeFile("form_json_files/newHireJson.json", newData, (error)=>{
+            if(err){
+              console.error(err);
+            }else {
+              console.log("form data has been added to json file");
+            }
+          })
+        })
+        
+        
+    })
         } catch (error) {
           console.error(error);
         }
-      });
-    } catch (error) {
-      console.log(' error getting data: ' + err);
-    }
     
-    
-    
+   
     
 
     res.writeHead(200, {"content-type": "application/json"})
     res.write(JSON.stringify({
-      status : "received form data",
+      status : "okay",
       filetoken : hashCode
     }))
     res.end()
@@ -149,12 +184,29 @@ const server = http.createServer((req, res) => {
     req.method === "GET"
   ){
     console.log(req.url);
-    fs.readFile("pages/downloadPage.html", (err, data) =>{
-      res.writeHead(200, {"content-type" : "text/html"})
-      res.write(data)
-      res.end()
+    
+    fs.readFile("form_json_files/newHireJson.json", (err,data) => {
+      if( err){
+        console.error("error reading file ")
+      } 
+/// verifies if the hash used in the url exist in json file 
+      let hashUrlValidation = JSON.parse(data)
+      if(hashUrlValidation[lastItemOfUrl]){
+        console.log("hash is tru ");
+        fs.readFile("pages/downloadPage.html", (err, data) =>{
+          res.writeHead(200, {"content-type" : "text/html"})
+          res.write(data)
+          res.end()
+        })
+        /// if hash i n the url doens't exist , user is redirected to page not found message
+      }else {
+          res.writeHead(404)
+          res.write("page not found")
+          res.end()
+        }
+       
     })
-    console.log(new_data_Store);
+    
     
   }});
 
