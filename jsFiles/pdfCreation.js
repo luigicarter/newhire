@@ -2,22 +2,22 @@ import fs from "fs"; // ✅ Works in ES Modules
 import { type } from "os";
 import url from "url";
 
-fs.readFile("form_json_files/newHireJson.json",  (error, data)=> {
-    if(error){
-        console.error(error);  
-        throw err 
 
-    }
+let pathToJsonFile = "form_json_files/newHireJson.json"
+function GetObjectFromJson(hash){
+    let file;
+    file = fs.readFileSync(pathToJsonFile, (error, data) => {
+        file = data
+        
+    })
 
-    const user = JSON.parse(data)
-
-    console.log(typeof user);
+    file = JSON.parse(file)
     
-
-})
-
-
-export function testExport(){ 
-    console.log("hi hello");
+    file = file[hash]
+    return file
     
+        
 }
+
+
+
