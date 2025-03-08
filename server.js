@@ -3,7 +3,7 @@ import url from "url"
 import fs from "fs"
 import crypto from "crypto"
 import os from "os"
-import { error } from "console"
+
 
 // const http = require('http');
 // const url = require('url');
@@ -17,12 +17,6 @@ import { error } from "console"
 const port = 8080;
 
 
-
-
-
-function createPDF(){
-
-}
 
 
 
@@ -45,7 +39,7 @@ const server = http.createServer((req, res) => {
 
   //// serves new hire form html
   if (req.url === '/' && req.method === 'GET') {
-    fs.readFile('pages/form.html', (err, data) => {
+    fs.readFile('pages/webForm.html', (err, data) => {
       if (err) {
         res.writeHead(404, {'Content-Type': 'text/html'});
         return res.end("404 Not Found")
