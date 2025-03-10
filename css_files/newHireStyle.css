@@ -1,3 +1,71 @@
-body {
-    background-color: black;
-}
+
+.warnings {
+    color: red;
+    font-weight: bold;
+    font-size: 13px;
+  }
+  
+  .wrap-class {
+    word-wrap: break-word;
+    max-width: 270px;
+  }
+  
+  .tight-margin {
+    height: 70px;
+  }
+  
+  .word-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .para-word-wrapper {
+    max-width: 300px;
+    word-wrap: break-word;
+    margin-bottom: 0px;
+    max-height: 100px;
+  }
+  
+  .table-title {
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  #other-equipment-textbox {
+    display: none;
+  }
+  
+  #other-department {
+    display: none;
+  }
+  
+  #button-container {
+    padding: 70px;
+  }
+  
+  #errorDiv {
+    background-color: red;
+    max-height: 30px;
+  }
+  
+  #errorMessage {
+    color: white;
+    margin-top: 25px;
+  }
+  
+  .checkboxUnchecked {
+    border: solid;
+    border-radius: 20px;
+    padding: 2px;
+    max-width: 250px;
+    color: white;
+    background-color: red;
+    border-color: red;
+    display: none;
+  }
+  
+  #pageError {
+    display: none;
+  }
+  

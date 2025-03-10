@@ -1,3 +1,10 @@
+let currentSpot = document.URL
+console.log(currentSpot);
+currentSpot = currentSpot.split("/")
+
+
+
+
 /// all static fields
 const startDate = document.getElementById('start_date');
 const endDate = document.getElementById('end_date');

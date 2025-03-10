@@ -9,156 +9,53 @@ const hash = "2b71b79479ad0046ad0659df52dca2f271cc30cfea293d6fab4e5d2da5472e43"
 let pathToJsonFile = "form_json_files/newHireJson.json"
 export  function GetObjectFromJson(hash){
     let file;
-    file = fs.readFileSync(pathToJsonFile, (error, data) => {
-        file = data
-        
-    })
-
+    file = fs.readFileSync(pathToJsonFile)
+    console.log(file);
     file = JSON.parse(file)
-    
     file = file[hash]
+    console.log(file)
     return file
     
-        
 }
 
+async function generatePdf(hash) {
+    try {
+        console.log("Launching Puppeteer...");
+        const browser = await puppeteer.launch({ headless: true });
+        const page = await browser.newPage();
 
+        console.log(`Reading HTML file for hash: ${hash}`);
+        const htmlContent = await fs.readFileSync("pages/newHireForm.html");
 
-
-
-const newHireHtml = {
-    Head : ` <!DOCTYPE html>
-                <html lang="en">
-                <head>
-                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/css/bootstrap-datepicker.min.css">
-                <link rel="stylesheet" href="css_files/style.css">
-                <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-                <script src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/js/bootstrap-datepicker.min.js"></script>
-                <meta charset="UTF-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>New Hire HTML</title>
-                </head>`,
-
-    style : `.warnings {
-                    color: red;
-                    font-weight: bold;
-                    font-size: 13px;
-                    }
-
-                    .wrap-class {
-                    word-wrap: break-word;
-                    max-width: 270px;
-                    }
-
-                    .tight-margin {
-                    height: 70px;
-                    }
-
-                    .word-wrapper {
-                    display: flex;
-                    flex-wrap: wrap;
-                    }
-
-                    .para-word-wrapper {
-                    max-width: 300px;
-                    word-wrap: break-word;
-                    margin-bottom: 0px;
-                    max-height: 100px;
-                    }
-
-                    .table-title {
-                    max-width: fit-content;
-                    margin-left: auto;
-                    margin-right: auto;
-                    }
-
-                    #other-equipment-textbox {
-                    display: none;
-                    }
-
-                    #other-department {
-                    display: none;
-                    }
-
-                    #button-container {
-                    padding: 70px;
-                    }
-
-                    #errorDiv {
-                    background-color: red;
-                    max-height: 30px;
-                    }
-
-                    #errorMessage {
-                    color: white;
-                    margin-top: 25px;
-                    }
-
-                    .checkboxUnchecked {
-                    border: solid;
-                    border-radius: 20px;
-                    padding: 2px;
-                    max-width: 250px;
-                    color: white;
-                    background-color: red;
-                    border-color: red;
-                    display: none;
-                    }
-
-                    #pageError {
-                    display: none;
-                    }
-                    `,
-    
-
-
-    bodyTagWithTitle : `<body>
-                        <div class="container d-flex align-items-center justify-content-center ">
-                        <div class="d-flex justify-content-center tight-margin word-wrapper">
-                            <h3 > <img src="/images/ec.png" id="ec_logo"> FORMULAIRE DE NOUVEAU PERSONNEL </h3>
-                            </div>
-                        </div>
-                        <div class="container d-flex align-items-center justify-content-center">
-                            <div class="d-flex justify-content-center">
-                            <h3 >  NEW PERSONNEL </h3>
-                        </div>
-                        </div>
-                        <br>`,
-    
-}
-
-
-
-
-async function geeneratePdf(hash, func){
-    
-     
-    const formDAte = func(hash)
-    
-    
-    const html = ``
-
-    const Browser = await puppeteer.launch();
-    const page = await Browser.newPage()
-
-    await page.setContent(html, {waitUntil:"domcontentloaded"})
-    const pdfBuffer = await page.pdf({format: "A4" })
-    
-    
-    await fs.writeFile(`pdfFiles/${hash}.pdf`, pdfBuffer , (error) => {
-        if (error){
-            console.error(" couldn't write file. Error ---> " + " " + error )
-        } else {
-            console.log("wrote pdf file to pdf folder")
+        if (!htmlContent.includes("<html")) {
+            throw new Error("File does not contain valid HTML. Check file content.");
         }
-    });
 
+        console.log("Setting page content...");
+        await page.setContent(htmlContent, { waitUntil: "domcontentloaded" });
 
-    await Browser.close()
+        console.log("Injecting CSS...");
+        await page.addStyleTag({ url: "http://localhost:8080/css_files/newHireStyle.css" });
 
+        console.log("Injecting JavaScript...");
+        await page.addScriptTag({ url: "http://localhost:8080/jsFiles/newHireFormPDFEditor.js" });
+
+        console.log("Waiting for JavaScript execution...");
+        page.waitForFunction(() => document.body.innerHTML.includes("first-name"), { timeout: 100000 });
+
+        console.log("Taking screenshot...");
+        await page.screenshot({ path: "debug_screenshot.png", fullPage: true });
+
+        console.log("Generating PDF...");
+        const pdfBuffer = await page.pdf({ format: "A4" });
+
+        await fs.writeFile(`pdfFiles/${hash}.pdf`, pdfBuffer);
+        console.log(`PDF saved at: pdfFiles/${hash}.pdf`);
+
+        await browser.close();
+    } catch (error) {
+        console.error("Error in generatePdf function:", error);
+    }
 }
 
-
-geeneratePdf(hash,GetObjectFromJson)
+generatePdf(hash)

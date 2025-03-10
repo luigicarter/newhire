@@ -202,7 +202,52 @@ const server = http.createServer((req, res) => {
     })
     
     
-  }});
+  } else if (beforeLastItemOfUrl === "makePDF"){
+    console.log("making pdf ");
+    
+     fs.readFile("pages/newHireForm.html", (error, data) => {
+      console.log("serving page");
+      
+      if (error){
+        console.error("this is the following error when pupeteer tried to make a http reqeust " + " " + error)
+      }
+      
+      res.writeHead(200,  {'Content-Type': 'text/html'})
+      res.write(data)
+      res.end()
+    })
+  } else if (req.url === "/css_files/newHireStyle.css"){
+    fs.readFile("css_files/newHireStyle.css", (err, data)=>{
+
+      if (err){
+        console.error("error getting new hire pdf file css " + " " + err)
+        res.end("error 404")
+      
+      }
+      console.log("serving CSS to puppeteer");
+      
+
+      res.writeHead(200, {"content-type" : "text/html"})
+      res.write(data)
+      res.end()
+    } )
+  } else if (req.url === "/jsFiles/newHireFormPDFEditor.js"){
+    fs.readFile("jsFiles/newHireFormPDFEditor.js", (err, data)=> {
+      if (err){
+        console.log(err);
+        res.end("error 404")
+        
+      }
+      console.log("serving JS to puppeteer");
+      
+      res.writeHead(200, {"content-type" : "text/html"})
+      res.write(data)
+      res.end()
+
+    })
+  }
+
+});
 
 server.listen(port, () => {
   console.log('server is running on port : ' + port);
