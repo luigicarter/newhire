@@ -1,4 +1,9 @@
 
+#ec_logo {
+  width: 150px;
+}
+
+
 .warnings {
     color: red;
     font-weight: bold;

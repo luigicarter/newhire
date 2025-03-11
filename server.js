@@ -1,8 +1,9 @@
 import http from "http"
 import url from "url"
-import fs from "fs"
+import fs, { read } from "fs"
 import crypto from "crypto"
 import os from "os"
+import { json } from "stream/consumers"
 
 
 // const http = require('http');
@@ -34,6 +35,7 @@ const server = http.createServer((req, res) => {
   let beforeLastItemOfUrl = currentUrlArray[ currentUrlArray.length - 2]
   
   
+  console.log(req.url);
   
   
 
@@ -216,6 +218,7 @@ const server = http.createServer((req, res) => {
       res.write(data)
       res.end()
     })
+    /////////// serving CSS file to pdf file for the newhire 
   } else if (req.url === "/css_files/newHireStyle.css"){
     fs.readFile("css_files/newHireStyle.css", (err, data)=>{
 
@@ -227,10 +230,12 @@ const server = http.createServer((req, res) => {
       console.log("serving CSS to puppeteer");
       
 
-      res.writeHead(200, {"content-type" : "text/html"})
+      res.writeHead(200, {"Content-Type" : "text/css"})
       res.write(data)
       res.end()
     } )
+
+    /////////// serving JS data to pdf fiel for the newhire
   } else if (req.url === "/jsFiles/newHireFormPDFEditor.js"){
     fs.readFile("jsFiles/newHireFormPDFEditor.js", (err, data)=> {
       if (err){
@@ -240,11 +245,29 @@ const server = http.createServer((req, res) => {
       }
       console.log("serving JS to puppeteer");
       
-      res.writeHead(200, {"content-type" : "text/html"})
+      res.writeHead(200, {"Content-Type" : "text/javascript"})
       res.write(data)
       res.end()
 
     })
+  } else if (beforeLastItemOfUrl === "newHireObject" && req.method === "POST"){
+    console.log("serving form data to pdf page");
+    let objectForCLient
+    try {
+      let newHireObject = fs.readFileSync(`form_json_files/newHireJson.json`)
+      objectForCLient = newHireObject
+    } catch (err){
+      console.log("file doesn't exist");
+      
+    }
+    let newHireObject = JSON.parse(objectForCLient)
+    let objectToSEnd = newHireObject[lastItemOfUrl]
+    
+    
+    res.writeHead(200, {"content-type": "application/json"})
+    res.write(JSON.stringify({ formInfo : objectToSEnd}))
+    res.end()
+
   }
 
 });

@@ -21,13 +21,27 @@ export  function GetObjectFromJson(hash){
 async function generatePdf(hash) {
     try {
         console.log("Launching Puppeteer...");
-        const browser = await puppeteer.launch({ headless: false });
+        const browser = await puppeteer.launch({ headless: false , devtools: true});
         const page = await browser.newPage();
 
         // console.log(`Reading HTML file for hash: ${hash}`);
        // const htmlContent = await fs.readFileSync("pages/newHireForm.html");
-       await page.setRequestInterception(true)
-        await page.goto(`http://localhost:8080/makePDF/${hash}`)
+       await page.setViewport({
+        width: 1280,  // Adjust width as needed
+        height: 800,  // Adjust height as needed
+        deviceScaleFactor: 1, // Keep 1 for normal scaling
+    });
+
+
+
+     await page.setRequestInterception(true);
+   
+    page.on("request", async (request) => {
+        const url = request.url();    
+      await request.continue()
+    });
+
+    await page.goto(`http://localhost:8080/makePDF/${hash}`,{ waitUntil: "networkidle2" })
         
 
         
