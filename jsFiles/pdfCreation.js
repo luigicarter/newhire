@@ -21,38 +21,16 @@ export  function GetObjectFromJson(hash){
 async function generatePdf(hash) {
     try {
         console.log("Launching Puppeteer...");
-        const browser = await puppeteer.launch({ headless: true });
+        const browser = await puppeteer.launch({ headless: false });
         const page = await browser.newPage();
 
-        console.log(`Reading HTML file for hash: ${hash}`);
-        const htmlContent = await fs.readFileSync("pages/newHireForm.html");
+        // console.log(`Reading HTML file for hash: ${hash}`);
+       // const htmlContent = await fs.readFileSync("pages/newHireForm.html");
+       await page.setRequestInterception(true)
+        await page.goto(`http://localhost:8080/makePDF/${hash}`)
+        
 
-        if (!htmlContent.includes("<html")) {
-            throw new Error("File does not contain valid HTML. Check file content.");
-        }
-
-        console.log("Setting page content...");
-        await page.setContent(htmlContent, { waitUntil: "domcontentloaded" });
-
-        console.log("Injecting CSS...");
-        await page.addStyleTag({ url: "http://localhost:8080/css_files/newHireStyle.css" });
-
-        console.log("Injecting JavaScript...");
-        await page.addScriptTag({ url: "http://localhost:8080/jsFiles/newHireFormPDFEditor.js" });
-
-        console.log("Waiting for JavaScript execution...");
-        page.waitForFunction(() => document.body.innerHTML.includes("first-name"), { timeout: 100000 });
-
-        console.log("Taking screenshot...");
-        await page.screenshot({ path: "debug_screenshot.png", fullPage: true });
-
-        console.log("Generating PDF...");
-        const pdfBuffer = await page.pdf({ format: "A4" });
-
-        await fs.writeFile(`pdfFiles/${hash}.pdf`, pdfBuffer);
-        console.log(`PDF saved at: pdfFiles/${hash}.pdf`);
-
-        await browser.close();
+        
     } catch (error) {
         console.error("Error in generatePdf function:", error);
     }
