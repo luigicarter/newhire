@@ -20,15 +20,14 @@ const hash = "2b71b79479ad0046ad0659df52dca2f271cc30cfea293d6fab4e5d2da5472e43"
 async function generatePdf(hash) {
     try {
         console.log("Launching Puppeteer...");
-        const browser = await puppeteer.launch({ headless: false });
+        const browser = await puppeteer.launch({ headless: true });
         const page = await browser.newPage();
 
-        // console.log(`Reading HTML file for hash: ${hash}`);
-       // const htmlContent = await fs.readFileSync("pages/newHireForm.html");
+       
        await page.setViewport({
-        width: 1280,  // Adjust width as needed
-        height: 800,  // Adjust height as needed
-        deviceScaleFactor: 1, // Keep 1 for normal scaling
+        width: 1280,
+        height: 800,
+        deviceScaleFactor: 1
     });
 
 
@@ -42,9 +41,9 @@ async function generatePdf(hash) {
 
     await page.goto(`http://localhost:8080/makePDF/${hash}`,{ waitUntil: "networkidle2" })
         
-    // await page.pdf({path : `pdfFiles/${hash}.pdf`})
+    await page.pdf({path : `pdfFiles/${hash}.pdf`})
 
-    // await browser.close()
+    await browser.close()
 
     
     } catch (error) {
