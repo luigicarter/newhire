@@ -9,7 +9,7 @@
         "address": "bk",
         "employeeStatus": "Occasionel / Casual",
         "typeOfEmployee": "Core",
-        "fromPublicServiceField": "true",
+        "fromPublicServiceField": "false",
         "otherDepartment": "fdfvdsf",
         "SupervisorOrManager": "false",
         "performancePay": "false",

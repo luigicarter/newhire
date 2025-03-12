@@ -6,21 +6,7 @@ import os from "os"
 import { json } from "stream/consumers"
 
 
-// const http = require('http');
-// const url = require('url');
-// const fs = require('fs');
-// const { log } = require('console');
-// const crypto = require("crypto");
-// const { json } = require('stream/consumers');
-// const { callbackify } = require('util');
-
-
 const port = 8080;
-
-
-
-
-
 
 
 const server = http.createServer((req, res) => {
