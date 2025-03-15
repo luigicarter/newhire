@@ -2,8 +2,11 @@ import http from "http"
 import url from "url"
 import fs, { read } from "fs"
 import crypto from "crypto"
-import os from "os"
+import os, { type } from "os"
 import { json } from "stream/consumers"
+import { last } from "pdf-lib"
+import  { generatePdf }  from "./jsFiles/pdfCreation.js"
+import { btoa } from "buffer"
 
 
 const port = 8080;
@@ -75,7 +78,7 @@ const server = http.createServer((req, res) => {
         res.writeHead(404, {'Content-Type': 'text/html'});
         return res.end("404 Not Found")
       }
-      res.writeHead(200, { content: 'text/css' });
+      res.writeHead(200, { "Content-type": 'text/css' });
       res.write(data);
       res.end();
     });
@@ -143,7 +146,10 @@ const server = http.createServer((req, res) => {
               console.log("form data has been added to json file");
             }
           })
-        })
+        
+        }
+      )
+      
         
         
     })
@@ -166,6 +172,7 @@ const server = http.createServer((req, res) => {
     req.method === "GET"
   ){
     console.log(req.url);
+    console.log("Dowload page ");
     
     fs.readFile("form_json_files/newHireJson.json", (err,data) => {
       if( err){
@@ -175,12 +182,14 @@ const server = http.createServer((req, res) => {
       let hashUrlValidation = JSON.parse(data)
       if(hashUrlValidation[lastItemOfUrl]){
         console.log("hash is tru ");
-        fs.readFile("pages/downloadPage.html", (err, data) =>{
+        let DownloadPageHtml = fs.readFileSync("pages/downloadPage.html")
+        console.log(typeof DownloadPageHtml);
+        
           res.writeHead(200, {"content-type" : "text/html"})
-          res.write(data)
+          res.write(DownloadPageHtml)
           res.end()
-        })
-        /// if hash i n the url doens't exist , user is redirected to page not found message
+        
+        /// if hash in the url doens't exist , user is redirected to page not found message
       }else {
           res.writeHead(404)
           res.write("page not found")
@@ -253,6 +262,62 @@ const server = http.createServer((req, res) => {
     res.writeHead(200, {"content-type": "application/json"})
     res.write(JSON.stringify({ formInfo : objectToSEnd}))
     res.end()
+
+  } else if(req.url === "/css_files/downloadPage.css"){
+    let downloadPageCSS = fs.readFileSync("css_Files/downloadPage.css")
+    if (downloadPageCSS){
+      res.writeHead(200, {"Content-type" : "text/css"})
+      res.write(downloadPageCSS)
+      res.end()
+    } else {
+      res.writeHead(404)
+      res.write("No CSS file found")
+      res.end()
+    }
+  } else if (req.url=== "/jsFiles/downloadPage.js"){
+    let downloadPageJS = fs.readFileSync("jsFiles/downloadPage.js")
+    if (downloadPageJS){
+      res.writeHead(200, {"content-type" : "application/javascript"})
+      res.write(downloadPageJS)
+      res.end()
+    } else {
+      res.writeHead(404)
+      res.write("no Javascript file to ship")
+      res.end()
+    }
+  } else if(beforeLastItemOfUrl === "requestAPDF" && 
+    req.method === "POST"
+  ){
+    
+    let PdfHash = lastItemOfUrl
+    generatePdf(PdfHash)
+    try {
+      let fileToSend = fs.readFileSync("pdfFiles/"+PdfHash+".pdf")
+      fileToSend = fileToSend.toString("base64")
+
+     
+  
+      let pdfReply =JSON.stringify( {
+        fileTitle : "newhire.pdf",
+        pdf : fileToSend
+      })
+      
+      
+      res.writeHead(200)
+      res.write(pdfReply)
+      res.end()
+    }catch (err){ 
+      console.error(err);
+      res.writeHead(404)
+      res.write(JSON.stringify({error : "Couldn't find the file"}))
+      res.end()
+      
+
+    }
+
+
+    
+    
 
   }
 

@@ -3,3 +3,4 @@ import fs from "fs"
 
 
 fs.readFileSync("abkjasdj.png")
+
