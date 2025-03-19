@@ -330,12 +330,38 @@ const server = http.createServer((req, res) => {
     })()
   } else if (req.url === "/getPdfBinary" && req.method === "POST"){
     console.log("pdf binary ");
-    let pdfHashFromDownloadPage = req.on("data", (data) => {
-      let rawData = data.toString()
-      let cleanPacket = JSON.parse(rawData)
-    })
-    
-    
+    const pdfToGetHash = {
+      hash : undefined
+    } ; 
+
+
+    (async ()=> {
+
+      let pdfHashFromDownloadPage = await req.on("data", (data) => {
+        let rawData = data.toString()
+        let cleanPacket = JSON.parse(rawData)
+        console.log(("adding hash to hash object"));
+        
+        pdfToGetHash.hash = cleanPacket["pdfHash"]
+          
+      })
+      console.log(pdfToGetHash.hash);
+      if(fs.existsSync(`pdfFiles/${pdfToGetHash.hash}.pdf`)){
+        let pdfBinary = fs.readFileSync(`pdfFiles/${pdfToGetHash.hash}.pdf`)
+        res.writeHead(200, {"content-type" : "application/pdf"})
+        res.write(pdfBinary)
+        res.end()
+
+      } else{
+        res.writeHead(404, {"content-type" : "text/plain"})
+        res.write("File not found")
+        res.end()
+      }
+      
+      
+
+
+    })()
 
   }
 
