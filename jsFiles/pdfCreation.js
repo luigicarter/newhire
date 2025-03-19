@@ -5,17 +5,9 @@ import puppeteer, { Browser } from "puppeteer";
 
 const hash = "2b71b79479ad0046ad0659df52dca2f271cc30cfea293d6fab4e5d2da5472e43"
 
-// let pathToJsonFile = "form_json_files/newHireJson.json"
-// export  function GetObjectFromJson(hash){
-//     let file;
-//     file = fs.readFileSync(pathToJsonFile)
-//     console.log(file);
-//     file = JSON.parse(file)
-//     file = file[hash]
-//     console.log(file)
-//     return file
-    
-// }
+.0
+2463
+
 
 export async function generatePdf(hash) {
     try {
@@ -23,12 +15,6 @@ export async function generatePdf(hash) {
         const browser = await puppeteer.launch({ headless: true });
         const page = await browser.newPage();
 
-       
-    //    await page.setViewport({
-    //     width: 1280,
-    //     height: 800,
-    //     deviceScaleFactor: 1
-    // });
 
 
 
@@ -49,6 +35,9 @@ export async function generatePdf(hash) {
     
     } catch (error) {
         console.error("Error in generatePdf function:", error);
+        return false
     }
+
+    return true
 }
 

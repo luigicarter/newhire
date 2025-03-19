@@ -19,12 +19,12 @@ const server = http.createServer((req, res) => {
   }catch(err){
     console.error(err)
   }
-  let currentUrlArray = currentUrl.pathname.split("/")
+  var currentUrlArray = currentUrl.pathname.split("/")
   let lastItemOfUrl = currentUrlArray[ currentUrlArray.length - 1]
-  let beforeLastItemOfUrl = currentUrlArray[ currentUrlArray.length - 2]
+  var beforeLastItemOfUrl = currentUrlArray[ currentUrlArray.length - 2]
   
   
-  console.log(req.url);
+  
   
   
 
@@ -285,37 +285,55 @@ const server = http.createServer((req, res) => {
       res.write("no Javascript file to ship")
       res.end()
     }
-  } else if(beforeLastItemOfUrl === "requestAPDF" && 
+  } else if(beforeLastItemOfUrl === "requestPdfInfo" && 
     req.method === "POST"
   ){
     
-    let PdfHash = lastItemOfUrl
-    generatePdf(PdfHash)
-    try {
-      let fileToSend = fs.readFileSync("pdfFiles/"+PdfHash+".pdf")
-      fileToSend = fileToSend.toString("base64")
-
-     
+    let PdfHash = lastItemOfUrl;
+    (async ()=>{
+      await generatePdf(PdfHash)
+        console.log("getting generated pdf info");
+        
+        let Jsonfilebuffer = fs.readFileSync("form_json_files/newHireJson.json")
+        
+        Jsonfilebuffer = JSON.parse(Jsonfilebuffer)
+        Jsonfilebuffer = Jsonfilebuffer[PdfHash]
+        
+        let pdfFileCheck;
   
-      let pdfReply =JSON.stringify( {
-        fileTitle : "newhire.pdf",
-        pdf : fileToSend
-      })
-      
-      
-      res.writeHead(200)
-      res.write(pdfReply)
-      res.end()
-    }catch (err){ 
-      console.error(err);
-      res.writeHead(404)
-      res.write(JSON.stringify({error : "Couldn't find the file"}))
-      res.end()
-      
+        try {
+          pdfFileCheck = fs.readFileSync("pdfFiles/"+ PdfHash +".pdf")
+          
+        } catch (err){
+          
+          console.error(err + "issue getting pdf file. File might not exist");
+          pdfFileCheck = undefined
+          return pdfFileCheck
+          
+        }
+        if (pdfFileCheck !== undefined){
+          let pdfReply =JSON.stringify( {
+            fileTitle : `${Jsonfilebuffer["lastName"]}, ${Jsonfilebuffer["firstName"]} - New Hire Form` ,
+            pdf :  PdfHash
+          })     
+          res.writeHead(200, {"content-type" : "aplication/json"})
+          res.write(pdfReply)
+          res.end()
+  
+        } else {
+          
+          console.error(err);
+          res.writeHead(404, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({ error: "Couldn't find the file" }));
+        }
 
-    }
-
-
+    })()
+  } else if (req.url === "/getPdfBinary" && req.method === "POST"){
+    console.log("pdf binary ");
+    let pdfHashFromDownloadPage = req.on("data", (data) => {
+      let rawData = data.toString()
+      let cleanPacket = JSON.parse(rawData)
+    })
     
     
 
