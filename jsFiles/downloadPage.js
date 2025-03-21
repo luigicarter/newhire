@@ -1,5 +1,6 @@
 
-const downloadTag = document.getElementById('downloadCon')
+const loadingDiv = document.getElementById('loading-div')
+const downloadDiv = document.getElementById("download-div")
 
 
 
@@ -55,14 +56,7 @@ try {
 
 }
 
-
 (async ()=> { 
-
-
-    if(!downloadTag){
-
-        throw new Error("Download tag doesn't exist")
-    }
 
     let pdfInfo = await getPdfInfo(fileToRequest)
     console.log(pdfInfo);
@@ -73,26 +67,25 @@ try {
     console.log(pdfBinary);
     
     let fileUrl = URL.createObjectURL(pdfBinary)
+    fileIsHere = true
     console.log(fileUrl);
-    
+
+})();
+
+/// add while loop that checks if file has been upload
 
 
-    let downloadARef = document.createElement("A")
-    downloadARef.href = fileUrl
-    downloadARef.download = pdfInfo["fileTitle"]
+(async ()=>{
     
+    while(true){
+        if (fileIsHere === true){
 
-    let downloadBtn = document.createElement("button")
-    downloadBtn.innerText = "Download PDF"
+            loadingDiv.style.display = "none";
+            downloadDiv.style.display = "flex";
+            break;
+        }
+        await new Promise(resolve => setTimeout(resolve, 200));
     
-    console.log("adding button");
-    
-    downloadARef.appendChild(downloadBtn)
-
-    console.log("adding aRef");
-    
-    downloadTag.appendChild(downloadARef)
+    };
 
 })()
-
-

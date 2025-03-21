@@ -3,6 +3,9 @@
   width: 150px;
 }
 
+body{
+  background-color:  #DCDCDC;
+ }
 
 .warnings {
     color: red;
