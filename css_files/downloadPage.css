@@ -29,7 +29,7 @@
   font-size: 20px;
   font-family: Helvetica;
   font-weight: bold ;
-  position: fixed;
+
 }
 .loader {
   margin-top: 50px;
@@ -54,19 +54,39 @@ body{
 }
 
 .download-message{
-  text-align: center;
+  /* margin-left: 45%; */
+  
+  margin-top: 30px;
   font-size: 20px;
   font-family: Helvetica;
   font-weight: bold ;
-  padding: 90%;
+  margin-left: 5%;
+  
+  
 }
-
 
 /*  check box animation  */
 
 .checker{
-  margin-right: -50%;
+  
+  width: 100px;
+  height: 100px;
   margin-top: 50px;
-  width: 80px;
-  height: 80px;
+  margin-left: 35%;
+  
+  
+  
 }
+
+.checker-div{
+ display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%; 
+  
+}
+
+/* .download-div{
+  
+} */
+

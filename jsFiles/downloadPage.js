@@ -1,7 +1,7 @@
 
 const loadingDiv = document.getElementById('loading-div')
 const downloadDiv = document.getElementById("download-div")
-
+const downloadLink = document.getElementById("download-link")
 
 
 let me = document.URL
@@ -67,7 +67,11 @@ try {
     console.log(pdfBinary);
     
     let fileUrl = URL.createObjectURL(pdfBinary)
+    downloadLink.setAttribute("href", fileUrl)
+    downloadLink.setAttribute("download", pdfInfo["fileTitle"]+".pdf")
+    
     fileIsHere = true
+
     console.log(fileUrl);
 
 })();
@@ -82,6 +86,7 @@ try {
 
             loadingDiv.style.display = "none";
             downloadDiv.style.display = "flex";
+            downloadLink.click()
             break;
         }
         await new Promise(resolve => setTimeout(resolve, 200));
