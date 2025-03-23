@@ -362,6 +362,29 @@ const server = http.createServer((req, res) => {
 
 
     })()
+  }
+  else if ( req.url === "/images/check.png"){
+    console.log("serving check igmaes");
+    
+    fs.readFile("images/check.png", (err, data)=> {
+      if(err){
+        console.log(err);
+        
+
+        res.writeHead(404, {"content-type": "plain/html"})
+        res.write("Picture not found")
+        res.end()
+      }else{
+
+        res.writeHead(200, {"content-type": 'image/png' })
+        res.write(data)
+        res.end()
+
+      }
+
+    })
+
+
 
   }
 
