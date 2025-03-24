@@ -5,9 +5,6 @@ import puppeteer, { Browser } from "puppeteer";
 
 const hash = "2b71b79479ad0046ad0659df52dca2f271cc30cfea293d6fab4e5d2da5472e43"
 
-.0
-2463
-
 
 export async function generatePdf(hash) {
     try {

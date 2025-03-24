@@ -27,352 +27,356 @@
 
 </head>
   <body>
-    <div class="container d-flex align-items-center justify-content-center ">
-      <div class="d-flex justify-content-center tight-margin word-wrapper">
+    
+    <div id="body-format" > 
+
+      
+      <div class="container d-flex align-items-center justify-content-center ">
+        <div class="d-flex justify-content-center tight-margin word-wrapper">
           <h3 > <img src="/images/ec.png" id="ec_logo"> FORMULAIRE DE NOUVEAU PERSONNEL </h3>
         </div>
       </div>
       <div class="container d-flex align-items-center justify-content-center">
         <div class="d-flex justify-content-center">
-        <h3 >  NEW PERSONNEL </h3>
+          <h3 >  NEW PERSONNEL </h3>
+        </div>
       </div>
-    </div>
-    <br>
-    
-  <div class="container d-flex align-items-center justify-content-center">
-    <div class="d-flex justify-content-center">
-    <br>
-      <form>
-        <br>
-        <div class="inlining_components">
-            <label> Date de Debut / Start Date:</label>
-            <div class="input-group date" data-date-format="mm-dd-yyyy">
-              <input type="text" id="start_date"  class="form-control" readonly />
-              <span class="input-group-addon">
-                <i class="glyphicon glyphicon-calendar"></i>
-                
-              </span>
-              <br>
-            </div>
-            <p class="warnings"> (Date can only be set 5 business days ahead )</p>
+      <br>
+      
+      <div class="container d-flex align-items-center justify-content-center">
+        <div class="d-flex justify-content-center">
+          <br>
+          <form>
             <br>
-            <label>Date de fin / End Date:</label>
-            <div class="input-group date" data-date-format="mm-dd-yyyy">
-              <input type="text" id="end_date" class="form-control" readonly />
-              <span class="input-group-addon">
-                <i class="glyphicon glyphicon-calendar"></i>
-              </span>
+            <div class="inlining_components">
+              <label> Date de Debut / Start Date:</label>
+              <div class="input-group date" data-date-format="mm-dd-yyyy">
+                <input type="text" id="start_date"  class="form-control" readonly />
+                <span class="input-group-addon">
+                  <i class="glyphicon glyphicon-calendar"></i>
+                  
+                </span>
+                <br>
+              </div>
+              <p class="warnings"> (Date can only be set 5 business days ahead )</p>
+              <br>
+              <label>Date de fin / End Date:</label>
+              <div class="input-group date" data-date-format="mm-dd-yyyy">
+                <input type="text" id="end_date" class="form-control" readonly />
+                <span class="input-group-addon">
+                  <i class="glyphicon glyphicon-calendar"></i>
+                </span>
+              </div>
+              <p class="warnings"> (Date can only be set 5 business days ahead )</p>
             </div>
-            <p class="warnings"> (Date can only be set 5 business days ahead )</p>
-            </div>
-            </b>
-            <table class="table table-borderless newhire">
-              <thead>
-                <tr>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row"></th>
-                  <td>Prenom / First name</td>
-                  <td>
-                    <div class="input-group mb-3">
+          </b>
+          <table class="table table-borderless newhire">
+            <thead>
+              <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row"></th>
+                <td>Prenom / First name</td>
+                <td>
+                  <div class="input-group mb-3">
                     <input  id="first-name" type="text" class="form-control" >
                   </div>
                 </td>
-                </tr>
-                <tr>
-                  <th scope="row"></th>
-                  <td>Nom de famille / Last name</td>
-                  <td>
-                    <div class="input-group mb-3">
-                      <input id="last-name" type="text" class="form-control" >
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row"></th>
-                  <td > telephone de contact / Contact phone number </td>
-                  <td>
-                    <div class="input-group mb-3">
-                      <input  id="phone" type="tel"class="form-control" >
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row"></th>
-                  <td> Courriel de contact / Contact email address </td>
-                  <td>
-                    <div class="input-group mb-3">
-                      <input id="email" type="email" class="form-control" >
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row"></th>
-                  <td> Address de livraison / Shipping address <br> 
+              </tr>
+              <tr>
+                <th scope="row"></th>
+                <td>Nom de famille / Last name</td>
+                <td>
+                  <div class="input-group mb-3">
+                    <input id="last-name" type="text" class="form-control" >
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row"></th>
+                <td > telephone de contact / Contact phone number </td>
+                <td>
+                  <div class="input-group mb-3">
+                    <input  id="phone" type="tel"class="form-control" >
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row"></th>
+                <td> Courriel de contact / Contact email address </td>
+                <td>
+                  <div class="input-group mb-3">
+                    <input id="email" type="email" class="form-control" >
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row"></th>
+                <td> Address de livraison / Shipping address <br> 
                   <p style="max-width:250px;" class="warnings wrap-class" > La livraison dans la region de la capital nationale necessite l'approbation
-                  de directeur. / Delivery in National Capital Region requires director approval</p></td>
-                  <td>
-                    <div class="input-group mb-3">
-                      <input id="address" type="text" class="form-control" >
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row"></th>
-                  <td> Statut d'emploi / Employment Status</td>
-                  <td>
-                    <select id="employ-status" class="form-select" aria-label="Default select example">
-                          <option value="Noselection">Selectionner / Choose</option>
-                          <option value="Determine / Term">Determine / Term</option>
-                          <option value="Occasionel / Casual">Occasionel / Casual</option>
-                          <option value="Detachement Interne / Secondment in"> Detachement Interne / Secondment in </option>
-                          <option value="Etudiant / Student "> Etudiant / Student </option>
-                          <option value="Mutation / Transfer"> Mutation / Transfer</option>
-                          <option value="Consutlant"> Consutlant</option>
-                          <option value="Personel d'agence / Agency Personel"> Personel d'agence / Agency Personel</option>
-                        </select>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row"></th>
-                  <td> Type d'emploi / Employment Type </td>
-                  <td> 
+                    de directeur. / Delivery in National Capital Region requires director approval</p></td>
+                    <td>
+                      <div class="input-group mb-3">
+                        <input id="address" type="text" class="form-control" >
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row"></th>
+                    <td> Statut d'emploi / Employment Status</td>
+                    <td>
+                      <select id="employ-status" class="form-select" aria-label="Default select example">
+                        <option value="Noselection">Selectionner / Choose</option>
+                        <option value="Determine / Term">Determine / Term</option>
+                        <option value="Occasionel / Casual">Occasionel / Casual</option>
+                        <option value="Detachement Interne / Secondment in"> Detachement Interne / Secondment in </option>
+                        <option value="Etudiant / Student "> Etudiant / Student </option>
+                        <option value="Mutation / Transfer"> Mutation / Transfer</option>
+                        <option value="Consutlant"> Consutlant</option>
+                        <option value="Personel d'agence / Agency Personel"> Personel d'agence / Agency Personel</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row"></th>
+                    <td> Type d'emploi / Employment Type </td>
+                    <td> 
                       <p id="typeEmError" class="checkboxUnchecked" > Please Check one of these boxes </p>
                       <input type="checkbox" id="core-personel" name="vehicle3" value="Core" >
                       <label> Personnel de base / Core Personnel</label>
                       <br>
                       <input type="checkbox" id="ESS-personel" name="vehicle3" value="ESS">
                       <label>  Personnel de soutien aux événements / Event Support Personnel </label>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row"></th>
-                  <td class="para-word-wrapper" >
-                    Le nouvel employé vient de la fonction
-                     publique? Is the new employee from public service?
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row"></th>
+                    <td class="para-word-wrapper" >
+                      Le nouvel employé vient de la fonction
+                      publique? Is the new employee from public service?
                       <p class="warnings wrap-class ">Requis pour la création ou le transfert de MaClé / 
                         Required for MyKey creation or transfer</p>
-                    </td>
-                  <td>
-                    <p id="publicEmError" class="checkboxUnchecked" > Please Check one of these boxes </p>
-                    <input type="checkbox" id="from-public-service"  value="fromPublicService">
-                    <label>  Oui / Yes</label>
-                    <br>
-                    <!--<p> ou / or</p> --->
-                    
-                    <input type="checkbox" id="not-from-public-service" name="vehicle3" value="notFromPublicServer">
-                    <label>  Non / No </label>
-                    <div id="department-named">
-                    </div>
-                    <div id="other-department">
-                      <div class="input-group mb-3">
-                        <input id="other-department-text" type="text" class="form-control" >
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row"></th>
-                  <td class="para-word-wrapper"> 
-                    S'agit-il d'un poste de superviseur, 
-                    de gestionnaire ou de cadre ? / Is this a supervisor, manager or executive position? 
-                  </td>
-                  <td>
-                    <p id="supervisorORnotError" class="checkboxUnchecked" > Please Check one of these boxes </p>
-                    <input type="checkbox" id="IsSupervisor" name="vehicle3" value="isASupervior">
-                    <label>  Oui / Yes</label>
-                    <br>
-                   
-                    <input type="checkbox" id="NotSupervisor" name="vehicle3" value="Is not a supervior">
-                    <label>  Non / No </label>
-                     
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row"></th>
-                  <td class="para-word-wrapper"> 
-                    Le nouvel employé sera-t-il soumis à une rémunération au rendement ? 
-                    / Will new employee be subject to performance pay?
-                  </td>
-                  <td>
-                    <p id="performancePayError" class="checkboxUnchecked" > Please Check one of these boxes </p>
-                    <input type="checkbox" id="performance-pay-yes" name="vehicle3" value="Employee will receive performance pay">
-                    <label>  Oui / Yes</label>
-                    <br>
-                    
-                    <input type="checkbox" id="performance-pay-no" name="vehicle3" value="Employee not will receive performance pay">
-                    <label>  Non / No </label>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row"></th>
-                  <td class="para-word-wrapper"> 
-                    Bâtiment / Building 
-                  </td>
-                  <td>
-                    <select id="building-location" class="form-select" aria-label="Default select example" id="Building-location">
-                      <option value="30 rue Victoria"> 30 rue Victoria</option>
-                      <option value="22 rue Eddy ">22 rue Eddy</option>
-                      <option value="440 Coventry Rd">440 Coventry Rd</option>
-                      <option value="Statistiques Canada / Statistics Canada">Statistiques Canada / Statistics Canada</option>
-                    </select>
-                  </td>
-                  <tr>
-                    <th scope="row"></th>
-                    <td class="para-word-wrapper" >
-                      Lieu de travail / Work Location
-                        <p class="warnings wrap-class ">Pour les demandes de badge de sécurité,
-                           veuillez contacter: For security pass requests, please contact:
-                          Securite-Security@elections.ca
-                        </p>
                       </td>
-                    <td>
-                      <p id="OnsiteOrTeleworkError" class="checkboxUnchecked" > Please Check one of these boxes </p>
-                    
-                      <input type="checkbox" id="telework" value="telework">
-                      <label> Télétravail / Telework</label>
-                      <br>
-                         
-                      <input type="checkbox" id="onsite"  value="Onsite">
-                      <label>  Sur place / Onsite </label>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"></th>
-                    <td class="para-word-wrapper" >
-                      Titre du poste bilingue / Bilingual Position Title
-                      </td>
-                    <td>
-                      <div class="input-group mb-3">
-                        <input type="text" class="form-control" id="employee-title"  aria-label="Sizing example input" 
-                        aria-describedby="inputGroup-sizing-default">
-                      </div>                      
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"></th>
-                    <td class="para-word-wrapper" >
-                      Secteur / Sector
-                      </td>
-                    <td>
-                      <div class="input-group mb-3">
-                        <input type="text" id="employee-sector"  class="form-control" aria-label="Sizing example input" 
-                        aria-describedby="inputGroup-sizing-default">
-                      </div>                      
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"></th>
-                    <td class="para-word-wrapper" >
-                      Direction générale / Branch
-                      </td>
-                    <td>
-                      <div class="input-group mb-3">
-                        <input type="text" id="employee-branch" class="form-control" aria-label="Sizing example input" 
-                        aria-describedby="inputGroup-sizing-default">
-                      </div>                      
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"></th>
-                    <td class="para-word-wrapper" >
-                      Direction / Directorate
-                      </td>
-                    <td>
-                      <div class="input-group mb-3">
-                        <input type="text" id="directorate" class="form-control" aria-label="Sizing example input"
-                         aria-describedby="inputGroup-sizing-default">
-                      </div>                      
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"></th>
-                    <td class="para-word-wrapper" >
-                      Nom du superviseur / Supervisor Name
-                      </td>
-                    <td>
-                      <div class="input-group mb-3">
-                        <input type="text" id="supervisor-name" class="form-control" aria-label="Sizing example input" 
-                        aria-describedby="inputGroup-sizing-default">
-                      </div>                      
-                    </td>
-                  </tr>
-                  <tr>
-                  <th scope="row"></th>
-                    <td class="para-word-wrapper" >
-                      Accessoires informatiques / Computer Accessories
-                      <p class="warnings wrap-class ">Les employés à durée déterminée et indéterminée, les étudiants
-                         et les consultants reçoivent une tablette et jusqu'à deux moniteurs. Les occasionnels et 
-                         le personnel de soutien aux événements reçoivent un laptop ou un ordinateur tout-en-un et un moniteur. 
-                         / Term and Indeterminate employees, students and consultants receive a tablet and up to two monitors. 
-                        Casuals and Event Staff receive a laptop or All-In-One computer and one monitor.</p>
-                    </td>
-                    <td>
-                      <select class="form-select" aria-label="Default select example" id="number-of-monitors">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                      </select>
+                      <td>
+                        <p id="publicEmError" class="checkboxUnchecked" > Please Check one of these boxes </p>
+                        <input type="checkbox" id="from-public-service"  value="fromPublicService">
+                        <label>  Oui / Yes</label>
                         <br>
-                        <p id="equipmentCheckError" class="checkboxUnchecked" > Please Check one of these boxes </p>
-                    
-                        <input type="checkbox" id="keyboard-mouse" value="keyboard-mouse" >
-                        <label> Clavier et souris / Keyboard and Mouse</label>
-                        <br>
-                        <input type="checkbox" id="other-equipment-check" value="other-equipment-check">
-                        <label> Exigences particulières de matériel / Other Hardware Requirements:</label>
-                        <div id="other-equipment-textbox">
-                          <div class="form-floating">
-                            <textarea class="form-control" placeholder="" 
-                            id="other-equipment-list" style="height: 100px"></textarea>
-                            <label for="floatingTextarea2"></label>
+                        <!--<p> ou / or</p> --->
+                        
+                        <input type="checkbox" id="not-from-public-service" name="vehicle3" value="notFromPublicServer">
+                        <label>  Non / No </label>
+                        <div id="department-named">
+                        </div>
+                        <div id="other-department">
+                          <div class="input-group mb-3">
+                            <input id="other-department-text" type="text" class="form-control" >
                           </div>
                         </div>
                       </td>
-                  </tr>
-                  <tr>
-                    <th scope="row"></th>
-                      <td class="para-word-wrapper" >
-                        Cellulaire / Cellphone
-                        <p class="warnings wrap-class ">Aucune approbation n'est requise pour les gestionnaires et supérieurs. 
-                          Les autres demandes doivent-être approuvées par le gestionnaire Télécom sans-fil.
-                          No approval is required for managers or above. 
-                          Other requests will be processed upon approval by the Telecom Wireless manager. 
-                          </p>
+                    </tr>
+                    <tr>
+                      <th scope="row"></th>
+                      <td class="para-word-wrapper"> 
+                        S'agit-il d'un poste de superviseur, 
+                        de gestionnaire ou de cadre ? / Is this a supervisor, manager or executive position? 
                       </td>
                       <td>
-                        <p id="cellCheckError" class="checkboxUnchecked" > Please Check one of these boxes </p>
-                    
-                        <input type="checkbox" id="yes-cellphone" name="vehicle3" value="yes-cellphone">
-                          <label> Oui / Yes</label>
-                          <br>
-                          <input type="checkbox" id="no-cellphone" name="vehicle3" value="no-cellphone">
-                          <label> Non / No</label>
+                        <p id="supervisorORnotError" class="checkboxUnchecked" > Please Check one of these boxes </p>
+                        <input type="checkbox" id="IsSupervisor" name="vehicle3" value="isASupervior">
+                        <label>  Oui / Yes</label>
+                        <br>
                         
+                        <input type="checkbox" id="NotSupervisor" name="vehicle3" value="Is not a supervior">
+                        <label>  Non / No </label>
+                        
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row"></th>
+                      <td class="para-word-wrapper"> 
+                        Le nouvel employé sera-t-il soumis à une rémunération au rendement ? 
+                        / Will new employee be subject to performance pay?
+                      </td>
+                      <td>
+                        <p id="performancePayError" class="checkboxUnchecked" > Please Check one of these boxes </p>
+                        <input type="checkbox" id="performance-pay-yes" name="vehicle3" value="Employee will receive performance pay">
+                        <label>  Oui / Yes</label>
+                        <br>
+                        
+                        <input type="checkbox" id="performance-pay-no" name="vehicle3" value="Employee not will receive performance pay">
+                        <label>  Non / No </label>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row"></th>
+                      <td class="para-word-wrapper"> 
+                        Bâtiment / Building 
+                      </td>
+                      <td>
+                        <select id="building-location" class="form-select" aria-label="Default select example" id="Building-location">
+                          <option value="30 rue Victoria"> 30 rue Victoria</option>
+                          <option value="22 rue Eddy ">22 rue Eddy</option>
+                          <option value="440 Coventry Rd">440 Coventry Rd</option>
+                          <option value="Statistiques Canada / Statistics Canada">Statistiques Canada / Statistics Canada</option>
+                        </select>
+                      </td>
+                      <tr>
+                        <th scope="row"></th>
+                        <td class="para-word-wrapper" >
+                          Lieu de travail / Work Location
+                          <p class="warnings wrap-class ">Pour les demandes de badge de sécurité,
+                            veuillez contacter: For security pass requests, please contact:
+                            Securite-Security@elections.ca
+                          </p>
+                        </td>
+                        <td>
+                          <p id="OnsiteOrTeleworkError" class="checkboxUnchecked" > Please Check one of these boxes </p>
+                          
+                          <input type="checkbox" id="telework" value="telework">
+                          <label> Télétravail / Telework</label>
                           <br>
-                          <select class="form-select" id="isManagement-cell" 
-                           aria-label="Default select example">
+                          
+                          <input type="checkbox" id="onsite"  value="Onsite">
+                          <label>  Sur place / Onsite </label>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"></th>
+                        <td class="para-word-wrapper" >
+                          Titre du poste bilingue / Bilingual Position Title
+                        </td>
+                        <td>
+                          <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="employee-title"  aria-label="Sizing example input" 
+                            aria-describedby="inputGroup-sizing-default">
+                          </div>                      
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"></th>
+                        <td class="para-word-wrapper" >
+                          Secteur / Sector
+                        </td>
+                        <td>
+                          <div class="input-group mb-3">
+                            <input type="text" id="employee-sector"  class="form-control" aria-label="Sizing example input" 
+                            aria-describedby="inputGroup-sizing-default">
+                          </div>                      
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"></th>
+                        <td class="para-word-wrapper" >
+                          Direction générale / Branch
+                        </td>
+                        <td>
+                          <div class="input-group mb-3">
+                            <input type="text" id="employee-branch" class="form-control" aria-label="Sizing example input" 
+                            aria-describedby="inputGroup-sizing-default">
+                          </div>                      
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"></th>
+                        <td class="para-word-wrapper" >
+                          Direction / Directorate
+                        </td>
+                        <td>
+                          <div class="input-group mb-3">
+                            <input type="text" id="directorate" class="form-control" aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-default">
+                          </div>                      
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"></th>
+                        <td class="para-word-wrapper" >
+                          Nom du superviseur / Supervisor Name
+                        </td>
+                        <td>
+                          <div class="input-group mb-3">
+                            <input type="text" id="supervisor-name" class="form-control" aria-label="Sizing example input" 
+                            aria-describedby="inputGroup-sizing-default">
+                          </div>                      
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"></th>
+                        <td class="para-word-wrapper" >
+                          Accessoires informatiques / Computer Accessories
+                          <p class="warnings wrap-class ">Les employés à durée déterminée et indéterminée, les étudiants
+                            et les consultants reçoivent une tablette et jusqu'à deux moniteurs. Les occasionnels et 
+                            le personnel de soutien aux événements reçoivent un laptop ou un ordinateur tout-en-un et un moniteur. 
+                            / Term and Indeterminate employees, students and consultants receive a tablet and up to two monitors. 
+                            Casuals and Event Staff receive a laptop or All-In-One computer and one monitor.</p>
+                          </td>
+                          <td>
+                            <select class="form-select" aria-label="Default select example" id="number-of-monitors">
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                            </select>
+                            <br>
+                            <p id="equipmentCheckError" class="checkboxUnchecked" > Please Check one of these boxes </p>
+                            
+                            <input type="checkbox" id="keyboard-mouse" value="keyboard-mouse" >
+                            <label> Clavier et souris / Keyboard and Mouse</label>
+                            <br>
+                            <input type="checkbox" id="other-equipment-check" value="other-equipment-check">
+                            <label> Exigences particulières de matériel / Other Hardware Requirements:</label>
+                            <div id="other-equipment-textbox">
+                              <div class="form-floating">
+                                <textarea class="form-control" placeholder="" 
+                                id="other-equipment-list" style="height: 100px"></textarea>
+                                <label for="floatingTextarea2"></label>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row"></th>
+                          <td class="para-word-wrapper" >
+                            Cellulaire / Cellphone
+                            <p class="warnings wrap-class ">Aucune approbation n'est requise pour les gestionnaires et supérieurs. 
+                              Les autres demandes doivent-être approuvées par le gestionnaire Télécom sans-fil.
+                              No approval is required for managers or above. 
+                              Other requests will be processed upon approval by the Telecom Wireless manager. 
+                            </p>
+                          </td>
+                          <td>
+                            <p id="cellCheckError" class="checkboxUnchecked" > Please Check one of these boxes </p>
+                            
+                            <input type="checkbox" id="yes-cellphone" name="vehicle3" value="yes-cellphone">
+                            <label> Oui / Yes</label>
+                            <br>
+                            <input type="checkbox" id="no-cellphone" name="vehicle3" value="no-cellphone">
+                            <label> Non / No</label>
+                            
+                            <br>
+                            <select class="form-select" id="isManagement-cell" 
+                            aria-label="Default select example">
                             <option value="Noselection" selected>Si oui, est-ce que l'employé / If yes, is employee:</option>
                             <option value="Gestionnaire ou supérieur / Manager or above">Gestionnaire ou supérieur / Manager or above</option>
                             <option value="Chef d'équipe / Team Lead">Chef d'équipe / Team Lead</option>
                             <option value="Autre / Other">Autre / Other</option>
                           </select>
                           
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row"></th>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"></th>
                         <td class="para-word-wrapper" >
                           Accès aux boîtes de réception et lecteurs partagés, adhésion à des listes de distribution.
                           Access to shared mailboxes and drives, distribution list memberships. 
-
+                          
                           <p class="warnings wrap-class ">Vous pouvez indiquer le nom d'un autre utilisateur avec des droits similaires.
                             / You may indicate the name of another user with similar rights.
-                            </p>
+                          </p>
                         </td>
                         <td>
                           <div class="form-floating">
@@ -384,65 +388,68 @@
                       </tr>
                       <tr>
                         <th scope="row"></th>
-                          <td class="para-word-wrapper" >
-                            Logiciels spéciaux / Special Software  
-  
-                            <p class="warnings wrap-class ">Préciser les noms du logiciel. 
-                              Les réponses telles que « comme » une autre personne ne seront pas traitées.
-                              Specify names of software. Responses such as “same as” another person will not be processed.
-                              
-                              </p>
-                          </td>
-                          <td>
-                            <div class="form-floating">
-                              <textarea class="form-control" placeholder="Leave a comment here" 
-                              id="software-access" style="height: 100px"></textarea>
-                              <label for="floatingTextarea2"></label>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <th scope="row"></th>
-                            <td class="para-word-wrapper" >
-                              Accès aux GCdocs / GCdocs Access  
-    
-                              <p class="warnings wrap-class ">Indiquez le groupe d'autorisations GCdocs approprié ou
-                                 le nom d'un employé occupant un poste similaire.
-                                Provide the appropriate GCdocs permissions group or the name of an employee in a similar position.
-                                
+                        <td class="para-word-wrapper" >
+                          Logiciels spéciaux / Special Software  
                           
-                                </p>
-                            </td>
-                            <td>
-                              <p id="GcdocsError" class="checkboxUnchecked" > Please Check one of these boxes </p>
-                    
-                              <input type="checkbox" id="YesGCdocs"  value="YesGCdocs">
-                              <label> Oui / Yes</label>
-                              <br>
-                              <input type="checkbox" id="NoGCdocs" value="NoGCdocs">
-                              <label> Non / No</label>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row"></th>
-                              <td class="para-word-wrapper" >
-                                Autres exigences / Other Requirements
-                              </td>
-                              <td>
-                                <div class="form-floating">
-                                  <textarea class="form-control" placeholder="Leave a comment here" 
-                                  id="other-requirements" style="height: 100px"></textarea>
-                                  <label for="floatingTextarea2"></label>
-                            </div>
-                          </td>
+                          <p class="warnings wrap-class ">Préciser les noms du logiciel. 
+                            Les réponses telles que « comme » une autre personne ne seront pas traitées.
+                            Specify names of software. Responses such as “same as” another person will not be processed.
+                            
+                          </p>
+                        </td>
+                        <td>
+                          <div class="form-floating">
+                            <textarea class="form-control" placeholder="Leave a comment here" 
+                            id="software-access" style="height: 100px"></textarea>
+                            <label for="floatingTextarea2"></label>
+                          </div>
+                        </td>
                       </tr>
-                </tbody>
-            </table>
-      </form>
-      <script type="module" src="/jsFiles/newHireFormPDFEditor.js"></script>
-
+                      <tr>
+                        <th scope="row"></th>
+                        <td class="para-word-wrapper" >
+                          Accès aux GCdocs / GCdocs Access  
+                          
+                          <p class="warnings wrap-class ">Indiquez le groupe d'autorisations GCdocs approprié ou
+                            le nom d'un employé occupant un poste similaire.
+                            Provide the appropriate GCdocs permissions group or the name of an employee in a similar position.
+                            
+                            
+                          </p>
+                        </td>
+                        <td>
+                          <p id="GcdocsError" class="checkboxUnchecked" > Please Check one of these boxes </p>
+                          
+                          <input type="checkbox" id="YesGCdocs"  value="YesGCdocs">
+                          <label> Oui / Yes</label>
+                          <br>
+                          <input type="checkbox" id="NoGCdocs" value="NoGCdocs">
+                          <label> Non / No</label>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"></th>
+                        <td class="para-word-wrapper" >
+                          Autres exigences / Other Requirements
+                        </td>
+                        <td>
+                          <div class="form-floating">
+                            <textarea class="form-control" placeholder="Leave a comment here" 
+                            id="other-requirements" style="height: 100px"></textarea>
+                            <label for="floatingTextarea2"></label>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </form>
+                <script type="module" src="/jsFiles/newHireFormPDFEditor.js"></script>
+                
+              </div>
+            </div>
+            
+            
       </div>
-  </div>
 
 
 </body>

@@ -7,10 +7,15 @@
     position: absolute;
 }
 
-.page-title{
+#page-title{
     margin-top: 20%;
     margin-left: 30%;
  
     position: absolute;
+
+}
+.subtitle-new-hire{
+   margin-top : 20px;
+   margin-bottom : 20px;
 
 }

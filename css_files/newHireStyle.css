@@ -3,7 +3,16 @@
   width: 150px;
 }
 
-body{
+#body-format{
+  border-radius: 20px;
+  background-color:  white;
+  max-width: 750px;
+  margin: 0 auto;
+ }
+
+ 
+ 
+ body{
   background-color:  #DCDCDC;
  }
 

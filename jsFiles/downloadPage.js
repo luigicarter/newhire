@@ -4,6 +4,9 @@ const downloadDiv = document.getElementById("download-div")
 const downloadLink = document.getElementById("download-link")
 
 
+const newHireFormPage = document.getElementById("newHireForm")
+const newform = document.getElementById("anotherForm")
+
 let me = document.URL
 let fileToRequestArray = me.split("/")
 
@@ -94,3 +97,14 @@ try {
     };
 
 })()
+
+
+newHireFormPage.addEventListener("click", ()=>{ 
+    window.location.href = "http://localhost:8080/newHireFormPage"
+})
+
+
+
+newform.addEventListener("click", ()=>{ 
+    window.location.href = "http://localhost:8080/"
+})

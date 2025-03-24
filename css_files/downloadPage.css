@@ -7,9 +7,14 @@
   border: solid;
   width: 500px;
   border-radius: 10px;
+  background-color: white;
   
 }
 
+#end-buttons{
+  margin-left: 10%;
+  
+}
 
 .align-middle-download{
   position: absolute;
@@ -22,6 +27,7 @@
   border-radius: 10px;
   display: none;
   height: 232px;
+  background-color: white;
 
 }
 .loading-message{
@@ -60,7 +66,7 @@ body{
   font-size: 20px;
   font-family: Helvetica;
   font-weight: bold ;
-  margin-left: 5%;
+  margin-left: 11.5%;
   
   
 }
@@ -82,7 +88,7 @@ body{
  display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 60%; 
+  width: 70%; 
   
 }
 
