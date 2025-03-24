@@ -1,0 +1,16 @@
+.page-center{
+    margin: auto;
+    width: 100%;
+    
+    margin-top: 25%;
+    padding: 10px;
+    position: absolute;
+}
+
+.page-title{
+    margin-top: 20%;
+    margin-left: 30%;
+ 
+    position: absolute;
+
+}

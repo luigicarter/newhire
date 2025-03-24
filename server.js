@@ -29,15 +29,34 @@ const server = http.createServer((req, res) => {
   
 
   //// serves new hire form html
-  if (req.url === '/' && req.method === 'GET') {
+  if (req.url === "/" && req.method === "GET" ) 
+    {
+      fs.readFile("pages/home.html", ( err,data)=> {
+        if(err){
+          res.writeHead(404, {'Content-Type': 'text/html'});
+          res.end("404 Not Found")
+
+        } else {
+          res.writeHead(200, {"content-type": "text.html"})
+          res.write(data)
+          res.end()
+        }
+      })
+
+
+   }
+else if (req.url === '/newHireFormPage' && req.method === 'GET') {
     fs.readFile('pages/webForm.html', (err, data) => {
       if (err) {
         res.writeHead(404, {'Content-Type': 'text/html'});
-        return res.end("404 Not Found")
+        res.end("404 Not Found")
+      } 
+      else {
+        res.writeHead(200, { content: 'text/html' });
+        res.write(data);
+        res.end();
+
       }
-      res.writeHead(200, { content: 'text/html' });
-      res.write(data);
-      res.end();
     });
 
 
@@ -386,7 +405,35 @@ const server = http.createServer((req, res) => {
 
 
 
-  }
+  } else if (req.url === "/jsFiles/home.js" && req.method === "GET"){
+    fs.readFile("jsFiles/home.js", (err, data)=> {
+      if (err){
+        res.writeHead(404, {"content-type": "text/plain"})
+        res.end("unable to get page Javascript, ERROR")
+
+      } else {
+        res.writeHead(200, {"content-type": "text/javascript"})
+        res.write(data)
+        res.end()
+      }
+    })
+
+  } else if (req.url === "/css_files/home.css" && req.method === "GET"){
+
+    fs.readFile("css_files/home.css", (err, data)=>{
+      if (err){
+        res.writeHead(200, {"content-type": "text/plain"})
+        res.end("unable to get page Javascript, ERROR")
+
+      } else {
+        res.writeHead(200, {"content-type": "text/css"})
+        res.write(data)
+        res.end()
+
+      }
+    })
+
+  } 
 
 });
 
