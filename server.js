@@ -432,8 +432,27 @@ else if (req.url === '/newHireFormPage' && req.method === 'GET') {
 
       }
     })
+ 
+  } else if (req.url === "/favicon.ico"){
+    
+    
+    fs.readFile("favicon/ec.ico", (err, data) => {
 
-  } 
+      if (err){
+        res.writeHead(404, {"content-type" : "text/plain"})
+        res.write("no favicon found")
+        res.end()
+      } else {
+
+        res.writeHead(200, {"content-type" : "image/x-icon"})
+        res.write(data)
+        res.end()
+
+      }
+
+    })
+
+  }
 
 });
 

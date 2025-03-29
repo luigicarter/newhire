@@ -638,6 +638,9 @@ function formValidation(htmlINputs, htmlDropdowns) {
     } 
 
   }
+
+  let body = document.getElementsByTagName("body")
+  let errorMessageAtTheTopOfPage = document.getElementById("pageError")
   /// selection boxes validation
   for (let x in htmlDropdowns) {
    if( htmlDropdowns[x].id ==="isManagement-cell" && form_fields.cellphone === false ){
@@ -676,6 +679,7 @@ function formValidation(htmlINputs, htmlDropdowns) {
     missingInputCount === -13 
     )
     {
+      errorMessageAtTheTopOfPage.style.display = "none"
 
     return true;
     
@@ -683,9 +687,12 @@ function formValidation(htmlINputs, htmlDropdowns) {
     missingDropdown <= -7 && 
     missingInputCount === -14 )
     {
+      errorMessageAtTheTopOfPage.style.display = "none"
       return true
       
     } else {
+      errorMessageAtTheTopOfPage.style.display = "flex"
+      window.scroll(0,0)
 
       return false;
       
